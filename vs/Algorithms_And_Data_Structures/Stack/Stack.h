@@ -14,7 +14,10 @@ struct Stack {
 };
 
 #define new_Stack(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U}
-extern enum Stack_status Stack_push(struct Stack* stack, void* elem);
+extern int Stack_is_empty(struct Stack* stack);
+extern int Stack_is_full(struct Stack* stack);
+extern unsigned int Stack_size(struct Stack* stack);
+extern enum Stack_status Stack_push(struct Stack* stack, const void* elem);
 extern enum Stack_status Stack_pop(struct Stack* stack, void* elem);
 
 #endif /* STACK_H */

@@ -1,4 +1,5 @@
 #include "CppUnitTest.h"
+#include <stdlib.h>
 
 extern "C" {
 #include "Stack.h"
@@ -16,7 +17,7 @@ namespace TestStack
 	{
 	public:
 		
-		TEST_METHOD(Test_normal)
+		TEST_METHOD(normal)
 		{
 			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
 			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
@@ -32,7 +33,7 @@ namespace TestStack
 	{
 	public:
 
-		TEST_METHOD(Test_push_a_datum)
+		TEST_METHOD(push_a_datum)
 		{
 			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
 			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
@@ -41,8 +42,55 @@ namespace TestStack
 			enum Stack_status status = Stack_push(&target, &elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
-			Assert::AreEqual({ 0, 0, 0, 0, 1 }, memory);
+			elem_t expected_memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
 			Assert::AreEqual(1U, target.pointer);
+		}
+
+		TEST_METHOD(push_data_to_full)
+		{
+			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+
+			elem_t elem = 1;
+			Stack_push(&target, &elem);
+			elem = 2;
+			Stack_push(&target, &elem);
+			elem = 3;
+			Stack_push(&target, &elem);
+			elem = 4;
+			Stack_push(&target, &elem);
+			elem = 5;
+			enum Stack_status status = Stack_push(&target, &elem);
+
+			Assert::AreEqual<int>(STACK_SUCCESS, status);
+			elem_t expected_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
+			Assert::AreEqual(5U, target.pointer);
+		}
+
+		TEST_METHOD(overflow)
+		{
+			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+
+			elem_t elem = 1;
+			Stack_push(&target, &elem);
+			elem = 2;
+			Stack_push(&target, &elem);
+			elem = 3;
+			Stack_push(&target, &elem);
+			elem = 4;
+			Stack_push(&target, &elem);
+			elem = 5;
+			Stack_push(&target, &elem);
+			elem = 6;
+			enum Stack_status status = Stack_push(&target, &elem);
+
+			Assert::AreEqual<int>(STACK_FAILURE, status);
+			elem_t expected_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
+			Assert::AreEqual(5U, target.pointer);
 		}
 	};
 
@@ -50,20 +98,62 @@ namespace TestStack
 	{
 	public:
 
-		TEST_METHOD(Test_pop_a_datum)
+		TEST_METHOD(pop_a_datum)
 		{
-			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
+			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
 			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
-
-			elem_t elem = 1;
-			Stack_push(&target, &elem);
+			target.pointer = 1U;
 
 			elem_t poped_elem = 0;
 			enum Stack_status status = Stack_pop(&target, &poped_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			Assert::AreEqual(1, poped_elem);
-			Assert::AreEqual({ 0, 0, 0, 0, 0 }, memory);
+			elem_t expected_memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
+			Assert::AreEqual(0U, target.pointer);
+		}
+
+		TEST_METHOD(pop_data_to_empty)
+		{
+			elem_t memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			target.pointer = 5U;
+
+			elem_t poped_elem5 = 0;
+			Stack_pop(&target, &poped_elem5);
+			Stack_pop(&target, NULL);
+			Stack_pop(&target, NULL);
+			Stack_pop(&target, NULL);
+			elem_t poped_elem = 0;
+			enum Stack_status status = Stack_pop(&target, &poped_elem);
+
+			Assert::AreEqual<int>(STACK_SUCCESS, status);
+			Assert::AreEqual(5, poped_elem5);
+			Assert::AreEqual(1, poped_elem);
+			elem_t expected_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
+			Assert::AreEqual(0U, target.pointer);
+		}
+
+		TEST_METHOD(underflow)
+		{
+			elem_t memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			target.pointer = 5U;
+
+			Stack_pop(&target, NULL);
+			Stack_pop(&target, NULL);
+			Stack_pop(&target, NULL);
+			Stack_pop(&target, NULL);
+			Stack_pop(&target, NULL);
+			elem_t poped_elem = 0;
+			enum Stack_status status = Stack_pop(&target, &poped_elem);
+
+			Assert::AreEqual<int>(STACK_FAILURE, status);
+			Assert::AreEqual(0, poped_elem);
+			elem_t expected_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
 			Assert::AreEqual(0U, target.pointer);
 		}
 	};
