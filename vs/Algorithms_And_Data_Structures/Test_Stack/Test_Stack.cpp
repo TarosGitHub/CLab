@@ -24,7 +24,7 @@ namespace TestStack
 			Assert::AreEqual(sizeof(elem_t), target.elem_size);
 			Assert::AreEqual((void*)memory, (void*)target.memory);
 			Assert::AreEqual((unsigned int)MEMORY_SIZE, target.capacity);
-			Assert::AreEqual(0U, target.size);
+			Assert::AreEqual(0U, target.pointer);
 		}
 	};
 
@@ -42,7 +42,7 @@ namespace TestStack
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			Assert::AreEqual({ 0, 0, 0, 0, 1 }, memory);
-			Assert::AreEqual(1U, target.size);
+			Assert::AreEqual(1U, target.pointer);
 		}
 	};
 
@@ -64,7 +64,7 @@ namespace TestStack
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			Assert::AreEqual(1, poped_elem);
 			Assert::AreEqual({ 0, 0, 0, 0, 0 }, memory);
-			Assert::AreEqual(0U, target.size);
+			Assert::AreEqual(0U, target.pointer);
 		}
 	};
 }
