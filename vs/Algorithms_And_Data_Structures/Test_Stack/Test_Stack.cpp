@@ -29,6 +29,75 @@ namespace TestStack
 		}
 	};
 
+	TEST_CLASS(Test_Stack_is_empty)
+	{
+	public:
+
+		TEST_METHOD(stack_is_empty)
+		{
+			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+
+			int is_empty = Stack_is_empty(&target);
+
+			Assert::AreNotEqual(0, is_empty);
+		}
+
+		TEST_METHOD(stack_is_not_empty)
+		{
+			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			target.pointer = 1U;
+
+			int is_empty = Stack_is_empty(&target);
+
+			Assert::AreEqual(0, is_empty);
+		}
+	};
+
+	TEST_CLASS(Test_Stack_is_full)
+	{
+	public:
+
+		TEST_METHOD(stack_is_full)
+		{
+			elem_t memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			target.pointer = 5U;
+
+			int is_full = Stack_is_full(&target);
+
+			Assert::AreNotEqual(0, is_full);
+		}
+
+		TEST_METHOD(stack_is_not_full)
+		{
+			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			target.pointer = 1U;
+
+			int is_full = Stack_is_full(&target);
+
+			Assert::AreEqual(0, is_full);
+		}
+	};
+
+	TEST_CLASS(Test_Stack_size)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
+			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			target.pointer = 1U;
+
+			unsigned int size = Stack_size(&target);
+
+			Assert::AreEqual(1U, size);
+		}
+	};
+
 	TEST_CLASS(Test_Stack_push)
 	{
 	public:
