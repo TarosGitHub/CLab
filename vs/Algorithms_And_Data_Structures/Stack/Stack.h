@@ -7,14 +7,14 @@ enum Stack_status {
 };
 
 struct Stack {
-	unsigned int data_size;
+	unsigned int elem_size;
 	char* memory;
 	unsigned int capacity;
 	unsigned int size;
 };
 
-#define new_Stack(data_size, memory, capacity) {sizeof(data_size), (char*)(memory), (capacity), 0}
-extern enum Stack_status Stack_push(struct Stack* stack, void* data);
-extern enum Stack_status Stack_pop(struct Stack* stack, void* data);
+#define new_Stack(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0}
+extern enum Stack_status Stack_push(struct Stack* stack, void* elem);
+extern enum Stack_status Stack_pop(struct Stack* stack, void* elem);
 
 #endif /* STACK_H */
