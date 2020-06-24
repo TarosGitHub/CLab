@@ -2,6 +2,14 @@
 #define STACK_H
 
 /**
+ * Boolean type
+ */
+enum Stack_bool {
+	STACK_FALSE, /**< False is zero */
+	STACK_TRUE /**< True is not zero */
+};
+
+/**
  * Stack processing status
  */
 enum Stack_status {
@@ -35,7 +43,7 @@ struct Stack {
  * @param stack Pointer to Stack
  * @return Return true if Stack is empty, otherwise return false
  */
-extern int Stack_is_empty(struct Stack* stack);
+extern enum Stack_bool Stack_is_empty(struct Stack* stack);
 
 /**
  * Determine if Stack is full.
@@ -43,7 +51,7 @@ extern int Stack_is_empty(struct Stack* stack);
  * @param stack Pointer to Stack
  * @return Return true if Stack is full, otherwise return false
  */
-extern int Stack_is_full(struct Stack* stack);
+extern enum Stack_bool Stack_is_full(struct Stack* stack);
 
 /**
  * Get the number of elements on Stack.
