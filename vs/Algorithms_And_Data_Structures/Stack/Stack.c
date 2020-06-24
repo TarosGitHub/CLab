@@ -2,6 +2,14 @@
 #include <string.h>
 #include "Stack.h"
 
+void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory, unsigned int capacity)
+{
+	stack->elem_size = elem_size;
+	stack->memory = (char*)memory;
+	stack->capacity = capacity;
+	stack->pointer = 0U;
+}
+
 enum Stack_bool Stack_is_empty(struct Stack* stack)
 {
 	return (stack->pointer == 0U ? STACK_TRUE : STACK_FALSE);

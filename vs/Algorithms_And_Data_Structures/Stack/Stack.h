@@ -38,6 +38,16 @@ struct Stack {
 #define new_Stack(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U}
 
 /**
+ * Initialize Stack.
+ * @see Test_Stack_init
+ * @param stack Pointer to Stack
+ * @param elem_size Size of an element
+ * @param memory Memory area of Stack
+ * @param capacity Maximum number of elements on Stack
+ */
+extern void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory, unsigned int capacity);
+
+/**
  * Determine if Stack is empty.
  * @see Test_Stack_is_empty
  * @param stack Pointer to Stack

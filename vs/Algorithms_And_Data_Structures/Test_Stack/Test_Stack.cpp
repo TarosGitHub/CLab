@@ -29,6 +29,24 @@ namespace TestStack
 		}
 	};
 
+	TEST_CLASS(Test_Stack_init)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
+			Stack target;
+			
+			Stack_init(&target, sizeof(elem_t), memory, MEMORY_SIZE);
+
+			Assert::AreEqual(sizeof(elem_t), target.elem_size);
+			Assert::AreEqual((void*)memory, (void*)target.memory);
+			Assert::AreEqual((unsigned int)MEMORY_SIZE, target.capacity);
+			Assert::AreEqual(0U, target.pointer);
+		}
+	};
+
 	TEST_CLASS(Test_Stack_is_empty)
 	{
 	public:
