@@ -2,6 +2,8 @@
 #include <string.h>
 #include "Stack.h"
 
+#define min(x, y) ((x) < (y) ? (x) : (y))
+
 void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory, unsigned int capacity)
 {
 	stack->elem_size = elem_size;
@@ -53,8 +55,8 @@ enum Stack_status Stack_pop(struct Stack* stack, void* elem)
 
 void Stack_copy(struct Stack* dst, const struct Stack* src)
 {
-	dst->elem_size = src->elem_size;
-	dst->capacity = src->capacity;
-	memcpy(dst->memory, src->memory, dst->elem_size * dst->capacity);
-	dst->pointer = src->pointer;
+	unsigned int elem_size = src->elem_size;
+	unsigned int capacity = min(dst->capacity, src->capacity);
+	memcpy(dst->memory, src->memory, elem_size * capacity);
+	dst->pointer = (unsigned int)(dst->capacity < src->pointer ? dst->capacity : src->pointer);
 }

@@ -8,6 +8,8 @@ extern "C" {
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 #define MEMORY_SIZE 5
+#define LARGE_MEMORY_SIZE 6 
+#define SMALE_MEMORY_SIZE 4 
 
 typedef int elem_t;
 
@@ -337,7 +339,7 @@ namespace TestStack
 			elem_t src_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
 			Stack src = Stack_new(elem_t, src_memory, MEMORY_SIZE);
 			src.pointer = 5U;
-			elem_t dst_memory[MEMORY_SIZE] = { 0, 0, 0, 0 ,0 };
+			elem_t dst_memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
 			Stack dst = Stack_new(elem_t, dst_memory, MEMORY_SIZE);
 
 			Stack_copy(&dst, &src);
@@ -345,8 +347,44 @@ namespace TestStack
 			Assert::AreEqual(sizeof(elem_t), dst.elem_size);
 			Assert::AreNotEqual(dst.memory, src.memory);
 			Assert::AreEqual(0, memcmp(dst.memory, src.memory, sizeof(dst_memory)));
-			Assert::AreEqual(5U, dst.capacity);
+			Assert::AreEqual((unsigned int)MEMORY_SIZE, dst.capacity);
 			Assert::AreEqual(5U, dst.pointer);
+		}
+
+		TEST_METHOD(the_size_of_destination_stack_memory_area_is_larger_than_the_pointer_of_source_stack)
+		{
+			elem_t src_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Stack src = Stack_new(elem_t, src_memory, MEMORY_SIZE);
+			src.pointer = 5U;
+			elem_t dst_memory[LARGE_MEMORY_SIZE] = { 0, 0, 0, 0, 0, 0 };
+			Stack dst = Stack_new(elem_t, dst_memory, LARGE_MEMORY_SIZE);
+
+			Stack_copy(&dst, &src);
+
+			Assert::AreEqual(sizeof(elem_t), dst.elem_size);
+			Assert::AreNotEqual(dst.memory, src.memory);
+			elem_t expected_memory[LARGE_MEMORY_SIZE] = { 1, 2, 3, 4, 5, 0 };
+			Assert::AreEqual(0, memcmp(expected_memory, dst.memory, sizeof(dst_memory)));
+			Assert::AreEqual((unsigned int)LARGE_MEMORY_SIZE, dst.capacity);
+			Assert::AreEqual(5U, dst.pointer);
+		}
+
+		TEST_METHOD(the_size_of_destination_stack_memory_area_is_smaler_than_the_pointer_of_source_stack)
+		{
+			elem_t src_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Stack src = Stack_new(elem_t, src_memory, MEMORY_SIZE);
+			src.pointer = 5U;
+			elem_t dst_memory[SMALE_MEMORY_SIZE] = { 0, 0, 0, 0 };
+			Stack dst = Stack_new(elem_t, dst_memory, SMALE_MEMORY_SIZE);
+
+			Stack_copy(&dst, &src);
+
+			Assert::AreEqual(sizeof(elem_t), dst.elem_size);
+			Assert::AreNotEqual(dst.memory, src.memory);
+			elem_t expected_memory[SMALE_MEMORY_SIZE] = { 1, 2, 3, 4 };
+			Assert::AreEqual(0, memcmp(expected_memory, dst.memory, sizeof(dst_memory)));
+			Assert::AreEqual((unsigned int)SMALE_MEMORY_SIZE, dst.capacity);
+			Assert::AreEqual(4U, dst.pointer);
 		}
 	};
 }
