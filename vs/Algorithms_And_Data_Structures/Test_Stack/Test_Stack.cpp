@@ -13,14 +13,14 @@ typedef int elem_t;
 
 namespace TestStack
 {
-	TEST_CLASS(Test_new_Stack)
+	TEST_CLASS(Test_Stack_new)
 	{
 	public:
 		
 		TEST_METHOD(normal)
 		{
 			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			Assert::AreEqual(sizeof(elem_t), target.elem_size);
 			Assert::AreEqual((void*)memory, (void*)target.memory);
@@ -54,7 +54,7 @@ namespace TestStack
 		TEST_METHOD(stack_is_empty)
 		{
 			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			enum Stack_bool is_empty = Stack_is_empty(&target);
 
@@ -64,7 +64,7 @@ namespace TestStack
 		TEST_METHOD(stack_is_not_empty)
 		{
 			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 1U;
 
 			enum Stack_bool is_empty = Stack_is_empty(&target);
@@ -80,7 +80,7 @@ namespace TestStack
 		TEST_METHOD(stack_is_full)
 		{
 			elem_t memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 5U;
 
 			enum Stack_bool is_full = Stack_is_full(&target);
@@ -91,7 +91,7 @@ namespace TestStack
 		TEST_METHOD(stack_is_not_full)
 		{
 			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 1U;
 
 			enum Stack_bool is_full = Stack_is_full(&target);
@@ -107,7 +107,7 @@ namespace TestStack
 		TEST_METHOD(normal)
 		{
 			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 1U;
 
 			unsigned int size = Stack_size(&target);
@@ -123,7 +123,7 @@ namespace TestStack
 		TEST_METHOD(push_a_datum)
 		{
 			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t elem = 1;
 			enum Stack_status status = Stack_push(&target, &elem);
@@ -137,7 +137,7 @@ namespace TestStack
 		TEST_METHOD(push_data_to_full)
 		{
 			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t elem = 1;
 			Stack_push(&target, &elem);
@@ -159,7 +159,7 @@ namespace TestStack
 		TEST_METHOD(overflow)
 		{
 			elem_t memory[MEMORY_SIZE] = { 0, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t elem = 1;
 			Stack_push(&target, &elem);
@@ -188,7 +188,7 @@ namespace TestStack
 		TEST_METHOD(pop_a_datum)
 		{
 			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 1U;
 
 			elem_t poped_elem = 0;
@@ -204,7 +204,7 @@ namespace TestStack
 		TEST_METHOD(pop_data_to_empty)
 		{
 			elem_t memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 5U;
 
 			elem_t poped_elem5 = 0;
@@ -226,7 +226,7 @@ namespace TestStack
 		TEST_METHOD(underflow)
 		{
 			elem_t memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
-			Stack target = new_Stack(elem_t, memory, MEMORY_SIZE);
+			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 5U;
 
 			Stack_pop(&target, NULL);

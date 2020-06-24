@@ -29,13 +29,13 @@ struct Stack {
 
 /**
  * Create Stack.
- * @see Test_new_Stack
+ * @see Test_Stack_new
  * @param elem_size Size of an element.
  * @param memory Memory area of Stack.
  * @param capacity Maximum number of elements on Stack.
  * @return Return one Stack object.
  */
-#define new_Stack(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U}
+#define Stack_new(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U}
 
 /**
  * Initialize Stack.
