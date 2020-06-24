@@ -11,6 +11,11 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 typedef int elem_t;
 
+struct AnyType {
+	char a;
+	int b;
+};
+
 namespace TestStack
 {
 	TEST_CLASS(Test_Stack_new)
@@ -187,6 +192,20 @@ namespace TestStack
 			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
 			Assert::AreEqual(5U, target.pointer);
 		}
+
+		TEST_METHOD(push_a_datum_of_AnyType)
+		{
+			struct AnyType memory[MEMORY_SIZE] = { {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
+			Stack target = Stack_new(struct AnyType, memory, MEMORY_SIZE);
+
+			struct AnyType pushed_elem = { 'a', 1 };
+			enum Stack_status status = Stack_push(&target, &pushed_elem);
+
+			Assert::AreEqual<int>(STACK_SUCCESS, status);
+			struct AnyType expected_memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
+			Assert::AreEqual(1U, target.pointer);
+		}
 	};
 
 	TEST_CLASS(Test_Stack_pop)
@@ -287,6 +306,23 @@ namespace TestStack
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			elem_t expected_memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
+			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
+			Assert::AreEqual(0U, target.pointer);
+		}
+
+		TEST_METHOD(pop_a_datum_of_AnyType)
+		{
+			struct AnyType memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
+			Stack target = Stack_new(struct AnyType, memory, MEMORY_SIZE);
+			target.pointer = 1U;
+
+			struct AnyType poped_elem;
+			enum Stack_status status = Stack_pop(&target, &poped_elem);
+
+			Assert::AreEqual<int>(STACK_SUCCESS, status);
+			struct AnyType expected_elem = { 'a', 1 };
+			Assert::AreEqual(0, memcmp(&expected_elem, &poped_elem, sizeof(poped_elem)));
+			struct AnyType expected_memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
 			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
 			Assert::AreEqual(0U, target.pointer);
 		}
