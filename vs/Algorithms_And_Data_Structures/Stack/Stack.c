@@ -19,10 +19,6 @@ unsigned int Stack_size(struct Stack* stack)
 
 enum Stack_status Stack_push(struct Stack* stack, const void* elem)
 {
-	if (NULL == elem) {
-		return STACK_FAILURE;
-	}
-
 	if (Stack_is_full(stack)) {
 		return STACK_FAILURE;
 	}

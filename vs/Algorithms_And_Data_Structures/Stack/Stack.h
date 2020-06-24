@@ -58,7 +58,7 @@ extern unsigned int Stack_size(struct Stack* stack);
  * @see Test_Stack_push
  * @param stack Pointer to Stack
  * @param elem An element that is pushed to Stack (This argument must not set NULL)
- * @return Return STACK_FAILURE if Stack is full and argument elem is NULL, otherwise return STACK_SUCCESS
+ * @return Return STACK_FAILURE if Stack is full, otherwise return STACK_SUCCESS
  */
 extern enum Stack_status Stack_push(struct Stack* stack, const void* elem);
 
