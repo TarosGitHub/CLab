@@ -7,9 +7,9 @@ extern "C" {
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-#define MEMORY_SIZE 5
-#define LARGE_MEMORY_SIZE 6 
-#define SMALE_MEMORY_SIZE 4 
+#define MEMORY_SIZE 5U
+#define LARGE_MEMORY_SIZE 6U 
+#define SMALE_MEMORY_SIZE 4U
 
 typedef int elem_t;
 
@@ -31,7 +31,7 @@ namespace TestStack
 
 			Assert::AreEqual(sizeof(elem_t), target.elem_size);
 			Assert::AreEqual((void*)memory, (void*)target.memory);
-			Assert::AreEqual((unsigned int)MEMORY_SIZE, target.capacity);
+			Assert::AreEqual(MEMORY_SIZE, target.capacity);
 			Assert::AreEqual(0U, target.pointer);
 		}
 	};
@@ -49,7 +49,7 @@ namespace TestStack
 
 			Assert::AreEqual(sizeof(elem_t), target.elem_size);
 			Assert::AreEqual((void*)memory, (void*)target.memory);
-			Assert::AreEqual((unsigned int)MEMORY_SIZE, target.capacity);
+			Assert::AreEqual(MEMORY_SIZE, target.capacity);
 			Assert::AreEqual(0U, target.pointer);
 		}
 	};
@@ -347,7 +347,7 @@ namespace TestStack
 			Assert::AreEqual(sizeof(elem_t), dst.elem_size);
 			Assert::AreNotEqual(dst.memory, src.memory);
 			Assert::AreEqual(0, memcmp(dst.memory, src.memory, sizeof(dst_memory)));
-			Assert::AreEqual((unsigned int)MEMORY_SIZE, dst.capacity);
+			Assert::AreEqual(MEMORY_SIZE, dst.capacity);
 			Assert::AreEqual(5U, dst.pointer);
 		}
 
@@ -365,7 +365,7 @@ namespace TestStack
 			Assert::AreNotEqual(dst.memory, src.memory);
 			elem_t expected_memory[LARGE_MEMORY_SIZE] = { 1, 2, 3, 4, 5, 0 };
 			Assert::AreEqual(0, memcmp(expected_memory, dst.memory, sizeof(dst_memory)));
-			Assert::AreEqual((unsigned int)LARGE_MEMORY_SIZE, dst.capacity);
+			Assert::AreEqual(LARGE_MEMORY_SIZE, dst.capacity);
 			Assert::AreEqual(5U, dst.pointer);
 		}
 
@@ -383,7 +383,7 @@ namespace TestStack
 			Assert::AreNotEqual(dst.memory, src.memory);
 			elem_t expected_memory[SMALE_MEMORY_SIZE] = { 1, 2, 3, 4 };
 			Assert::AreEqual(0, memcmp(expected_memory, dst.memory, sizeof(dst_memory)));
-			Assert::AreEqual((unsigned int)SMALE_MEMORY_SIZE, dst.capacity);
+			Assert::AreEqual(SMALE_MEMORY_SIZE, dst.capacity);
 			Assert::AreEqual(4U, dst.pointer);
 		}
 	};
