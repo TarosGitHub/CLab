@@ -327,4 +327,26 @@ namespace TestStack
 			Assert::AreEqual(0U, target.pointer);
 		}
 	};
+
+	TEST_CLASS(Test_Stack_copy)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			elem_t src_memory[MEMORY_SIZE] = { 1, 2, 3, 4, 5 };
+			Stack src = Stack_new(elem_t, src_memory, MEMORY_SIZE);
+			src.pointer = 5U;
+			elem_t dst_memory[MEMORY_SIZE] = { 0, 0, 0, 0 ,0 };
+			Stack dst = Stack_new(elem_t, dst_memory, MEMORY_SIZE);
+
+			Stack_copy(&dst, &src);
+
+			Assert::AreEqual(sizeof(elem_t), dst.elem_size);
+			Assert::AreNotEqual(dst.memory, src.memory);
+			Assert::AreEqual(0, memcmp(dst.memory, src.memory, sizeof(dst_memory)));
+			Assert::AreEqual(5U, dst.capacity);
+			Assert::AreEqual(5U, dst.pointer);
+		}
+	};
 }

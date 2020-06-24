@@ -89,4 +89,14 @@ extern enum Stack_status Stack_push(struct Stack* stack, const void* elem);
  */
 extern enum Stack_status Stack_pop(struct Stack* stack, void* elem);
 
+/**
+ * Copy Stack.
+ * This function makes a deep copy of Stack memory area.
+ * The copy destination stack memory area must be larger than or equal to the copy source stack memory area.
+ * @see Test_Stack_copy
+ * @param dst Destination to copy
+ * @param src Source of copy
+ */
+extern void Stack_copy(struct Stack* dst, const struct Stack* src);
+
 #endif /* STACK_H */

@@ -50,3 +50,11 @@ enum Stack_status Stack_pop(struct Stack* stack, void* elem)
 
 	return STACK_SUCCESS;
 }
+
+void Stack_copy(struct Stack* dst, const struct Stack* src)
+{
+	dst->elem_size = src->elem_size;
+	dst->capacity = src->capacity;
+	memcpy(dst->memory, src->memory, dst->elem_size * dst->capacity);
+	dst->pointer = src->pointer;
+}
