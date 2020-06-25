@@ -72,4 +72,23 @@ extern enum Queue_bool Queue_is_full(struct Queue* queue);
  */
 extern unsigned int Queue_size(struct Queue* queue);
 
+/**
+ * Enqueue an element to queue.
+ * @see Test_Queue_enqueue_dequeue
+ * @param queue Pointer to queue.
+ * @param elem An element that is enqueued to queue(You must not set NULL to this argument).
+ * @return Return QUEUE_FAILURE if queue is full, otherwise return QUEUE_SUCCESS.
+ */
+extern enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem);
+
+/**
+ * Dequeue an element from queue.
+ * @see Test_Queue_enqueue
+ * @see Test_Queue_enqueue_dequeue
+ * @param queue Pointer to queue.
+ * @param elem An element that is dequeued from queue(You can set NULL to this argument. In that case, no value is set to this argument).
+ * @return Return QUEUE_FAILURE if queue is empty, otherwise return QUEUE_SUCCESS.
+ */
+extern enum Queue_status Queue_dequeue(struct Queue* queue, void* elem);
+
 #endif /* QUEUE_H */

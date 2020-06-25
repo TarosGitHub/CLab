@@ -1,6 +1,8 @@
+#include <stddef.h>
+#include <string.h>
 #include "Queue.h"
 
-#define next(queue) ((queue->front + queue->size) % queue->capacity)
+#define Queue_index(queue, distance) ((queue->front + (distance)) % queue->capacity)
 
 void Queue_init(struct Queue* queue, unsigned int elem_size, void* memory, unsigned int capacity)
 {
@@ -24,4 +26,31 @@ enum Queue_bool Queue_is_full(struct Queue* queue)
 unsigned int Queue_size(struct Queue* queue)
 {
 	return queue->size;
+}
+
+enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem)
+{
+	if (Queue_is_full(queue)) {
+		return QUEUE_FAILURE;
+	}
+
+	memcpy(&queue->memory[queue->elem_size * Queue_index(queue, queue->size)], elem, queue->elem_size);
+	queue->size++;
+
+	return QUEUE_SUCCESS;
+}
+
+enum Queue_status Queue_dequeue(struct Queue* queue, void* elem)
+{
+	if (Queue_is_empty(queue)) {
+		return QUEUE_FAILURE;
+	}
+
+	if (NULL != elem) {
+		memcpy(elem, &queue->memory[queue->elem_size * queue->front], queue->elem_size);
+	}
+	queue->front = Queue_index(queue, 1);
+	queue->size--;
+
+	return QUEUE_SUCCESS;
 }
