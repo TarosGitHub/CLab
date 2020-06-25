@@ -48,4 +48,20 @@ struct Queue {
   */
 extern void Queue_init(struct Queue* queue, unsigned int elem_size, void* memory, unsigned int capacity);
 
+/**
+ * Determine if queue is empty.
+ * @see Test_Queue_is_empty
+ * @param queue Pointer to queue.
+ * @return Return true if queue is empty, otherwise return false.
+ */
+extern enum Queue_bool Queue_is_empty(struct Queue* queue);
+
+/**
+ * Determine if queue is full.
+ * @see Test_Queue_is_full
+ * @param queue Pointer to queue.
+ * @return Return true if queue is full, otherwise return false.
+ */
+extern enum Queue_bool Queue_is_full(struct Queue* queue);
+
 #endif /* QUEUE_H */
