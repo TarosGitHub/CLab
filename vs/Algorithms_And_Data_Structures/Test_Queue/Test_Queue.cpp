@@ -25,8 +25,7 @@ namespace TestQueue
 			Assert::AreEqual((void*)memory, (void*)target.memory);
 			Assert::AreEqual(MEMORY_SIZE, target.capacity);
 			Assert::AreEqual(0U, target.front);
-			Assert::AreEqual(0U, target.rear);
-			Assert::AreEqual<int>(QUEUE_TRUE, target.is_empty);
+			Assert::AreEqual(0U, target.size);
 		}
 	};
 
@@ -45,8 +44,7 @@ namespace TestQueue
 			Assert::AreEqual((void*)memory, (void*)target.memory);
 			Assert::AreEqual(MEMORY_SIZE, target.capacity);
 			Assert::AreEqual(0U, target.front);
-			Assert::AreEqual(0U, target.rear);
-			Assert::AreEqual<int>(QUEUE_TRUE, target.is_empty);
+			Assert::AreEqual(0U, target.size);
 		}
 	};
 }

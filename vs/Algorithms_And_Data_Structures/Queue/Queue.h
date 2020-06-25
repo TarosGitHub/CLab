@@ -25,8 +25,7 @@ struct Queue {
 	char* memory; /**< Memory area of queue. */
 	unsigned int capacity; /**< Maximum number of elements on queue. */
 	unsigned int front; /**< Pointer to front of queue. */
-	unsigned int rear; /**< Pointer to rear of queue. */
-	enum Queue_bool is_empty; /**< This flag is true if queue is empty. */
+	unsigned int size; /**< Number of elements on queue. */
 };
 
 /**
@@ -37,7 +36,7 @@ struct Queue {
  * @param capacity Maximum number of elements on queue.
  * @return Return a queue object.
  */
-#define Queue_new(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U, 0U, QUEUE_TRUE}
+#define Queue_new(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U, 0U}
 
  /**
   * Initialize the queue.
