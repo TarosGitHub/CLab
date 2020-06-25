@@ -20,3 +20,8 @@ enum Queue_bool Queue_is_full(struct Queue* queue)
 {
 	return (queue->size == queue->capacity ? QUEUE_TRUE : QUEUE_FALSE);
 }
+
+unsigned int Queue_size(struct Queue* queue)
+{
+	return queue->size;
+}

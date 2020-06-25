@@ -64,4 +64,12 @@ extern enum Queue_bool Queue_is_empty(struct Queue* queue);
  */
 extern enum Queue_bool Queue_is_full(struct Queue* queue);
 
+/**
+ * Get the number of elements on queue.
+ * @see Test_Queue_size
+ * @param queue Pointer to queue.
+ * @return Return the number of elements on queue.
+ */
+extern unsigned int Queue_size(struct Queue* queue);
+
 #endif /* QUEUE_H */

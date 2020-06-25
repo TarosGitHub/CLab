@@ -99,4 +99,20 @@ namespace TestQueue
 			Assert::AreEqual<int>(QUEUE_FALSE, is_full);
 		}
 	};
+
+	TEST_CLASS(Test_Queue_size)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			elem_t memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
+			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
+			target.size = 1U;
+
+			unsigned int size = Queue_size(&target);
+
+			Assert::AreEqual(1U, size);
+		}
+	};
 }
