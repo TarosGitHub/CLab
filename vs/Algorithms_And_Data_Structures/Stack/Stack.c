@@ -58,5 +58,5 @@ void Stack_copy(struct Stack* dst, const struct Stack* src)
 	unsigned int elem_size = src->elem_size;
 	unsigned int capacity = min(dst->capacity, src->capacity);
 	memcpy(dst->memory, src->memory, elem_size * capacity);
-	dst->pointer = (unsigned int)(dst->capacity < src->pointer ? dst->capacity : src->pointer);
+	dst->pointer = dst->capacity < src->pointer ? dst->capacity : src->pointer;
 }
