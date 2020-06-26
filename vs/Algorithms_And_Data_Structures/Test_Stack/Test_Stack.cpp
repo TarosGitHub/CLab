@@ -197,14 +197,14 @@ namespace TestStack
 
 		TEST_METHOD(push_a_datum_of_AnyType)
 		{
-			struct AnyType memory[MEMORY_SIZE] = { {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
-			Stack target = Stack_new(struct AnyType, memory, MEMORY_SIZE);
+			AnyType memory[MEMORY_SIZE] = { {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
+			Stack target = Stack_new(AnyType, memory, MEMORY_SIZE);
 
-			struct AnyType pushed_elem = { 'a', 1 };
+			AnyType pushed_elem = { 'a', 1 };
 			Stack_status status = Stack_push(&target, &pushed_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
-			struct AnyType expected_memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
+			AnyType expected_memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
 			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
 			Assert::AreEqual(1U, target.pointer);
 		}
@@ -314,17 +314,17 @@ namespace TestStack
 
 		TEST_METHOD(pop_a_datum_of_AnyType)
 		{
-			struct AnyType memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
-			Stack target = Stack_new(struct AnyType, memory, MEMORY_SIZE);
+			AnyType memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
+			Stack target = Stack_new(AnyType, memory, MEMORY_SIZE);
 			target.pointer = 1U;
 
-			struct AnyType poped_elem;
+			AnyType poped_elem;
 			Stack_status status = Stack_pop(&target, &poped_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
-			struct AnyType expected_elem = { 'a', 1 };
+			AnyType expected_elem = { 'a', 1 };
 			Assert::AreEqual(0, memcmp(&expected_elem, &poped_elem, sizeof(poped_elem)));
-			struct AnyType expected_memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
+			AnyType expected_memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
 			Assert::AreEqual(0, memcmp(expected_memory, memory, sizeof(memory)));
 			Assert::AreEqual(0U, target.pointer);
 		}
