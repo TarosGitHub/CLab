@@ -24,7 +24,7 @@ struct Queue {
 	unsigned int elem_size; /**< The size of an element. */
 	char* memory; /**< The memory area of the queue. */
 	unsigned int capacity; /**< The maximum number of elements on the queue. */
-	unsigned int front; /**< The pointer to front of the queue. */
+	unsigned int front; /**< The pointer to the front of the queue. */
 	unsigned int size; /**< The number of elements on the queue. */
 };
 

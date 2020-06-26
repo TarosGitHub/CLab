@@ -24,7 +24,7 @@ struct Stack {
 	unsigned int elem_size; /**< The size of an element. */
 	char* memory; /**< The memory area of the stack. */
 	unsigned int capacity; /**< The maximum number of elements on the stack. */
-	unsigned int pointer; /**< The pointer to top of the stack. */
+	unsigned int pointer; /**< The pointer to the top of the stack. */
 };
 
 /**
