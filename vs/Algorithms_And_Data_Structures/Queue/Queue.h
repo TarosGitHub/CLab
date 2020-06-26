@@ -21,19 +21,19 @@ enum Queue_status {
  * Queue data structure.
  */
 struct Queue {
-	unsigned int elem_size; /**< Size of an element. */
-	char* memory; /**< Memory area of queue. */
-	unsigned int capacity; /**< Maximum number of elements on queue. */
-	unsigned int front; /**< Pointer to front of queue. */
-	unsigned int size; /**< Number of elements on queue. */
+	unsigned int elem_size; /**< The size of an element. */
+	char* memory; /**< The memory area of the queue. */
+	unsigned int capacity; /**< The maximum number of elements on the queue. */
+	unsigned int front; /**< The pointer to front of the queue. */
+	unsigned int size; /**< The number of elements on the queue. */
 };
 
 /**
  * Create a queue.
  * @see Test_Queue_new
- * @param elem_size Size of an element.
- * @param memory Memory area of queue.
- * @param capacity Maximum number of elements on queue.
+ * @param elem_size The size of an element.
+ * @param memory The memory area of the queue.
+ * @param capacity The maximum number of elements on the queue.
  * @return Return a queue object.
  */
 #define Queue_new(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U, 0U}
@@ -41,53 +41,53 @@ struct Queue {
  /**
   * Initialize the queue.
   * @see Test_Queue_init
-  * @param queue Pointer to queue.
-  * @param elem_size Size of an element.
-  * @param memory Memory area of queue.
-  * @param capacity Maximum number of elements on queue.
+  * @param queue The pointer to the queue.
+  * @param elem_size The size of an element.
+  * @param memory The memory area of the queue.
+  * @param capacity The maximum number of elements on the queue.
   */
 extern void Queue_init(struct Queue* queue, unsigned int elem_size, void* memory, unsigned int capacity);
 
 /**
- * Determine if queue is empty.
+ * Determine if the queue is empty.
  * @see Test_Queue_is_empty
- * @param queue Pointer to queue.
- * @return Return true if queue is empty, otherwise return false.
+ * @param queue The pointer to the queue.
+ * @return Return true if the queue is empty, otherwise return false.
  */
 extern enum Queue_bool Queue_is_empty(struct Queue* queue);
 
 /**
- * Determine if queue is full.
+ * Determine if the queue is full.
  * @see Test_Queue_is_full
- * @param queue Pointer to queue.
- * @return Return true if queue is full, otherwise return false.
+ * @param queue The pointer to the queue.
+ * @return Return true if the queue is full, otherwise return false.
  */
 extern enum Queue_bool Queue_is_full(struct Queue* queue);
 
 /**
- * Get the number of elements on queue.
+ * Get the number of elements on the queue.
  * @see Test_Queue_size
- * @param queue Pointer to queue.
- * @return Return the number of elements on queue.
+ * @param queue The pointer to the queue.
+ * @return Return the number of elements on the queue.
  */
 extern unsigned int Queue_size(struct Queue* queue);
 
 /**
- * Enqueue an element to queue.
+ * Enqueue an element to the queue.
  * @see Test_Queue_enqueue_dequeue
- * @param queue Pointer to queue.
- * @param elem An element that is enqueued to queue(You must not set NULL to this argument).
- * @return Return QUEUE_FAILURE if queue is full, otherwise return QUEUE_SUCCESS.
+ * @param queue The pointer to the queue.
+ * @param elem An element that is enqueued to the queue(You must not set NULL to this argument).
+ * @return Return failure if the queue is full, otherwise return success.
  */
 extern enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem);
 
 /**
- * Dequeue an element from queue.
+ * Dequeue an element from the queue.
  * @see Test_Queue_enqueue
  * @see Test_Queue_enqueue_dequeue
- * @param queue Pointer to queue.
- * @param elem An element that is dequeued from queue(You can set NULL to this argument. In that case, no value is set to this argument).
- * @return Return QUEUE_FAILURE if queue is empty, otherwise return QUEUE_SUCCESS.
+ * @param queue The pointer to the queue.
+ * @param elem An element that is dequeued from the queue(You can set NULL to this argument. In that case, no value is set to this argument).
+ * @return Return failure if the queue is empty, otherwise return success.
  */
 extern enum Queue_status Queue_dequeue(struct Queue* queue, void* elem);
 
