@@ -48,7 +48,7 @@ struct Stack {
 extern void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory, unsigned int capacity);
 
 /**
- * Determine if the stack is empty.
+ * Judge if the stack is empty or not.
  * @see Test_Stack_is_empty
  * @param stack The pointer to the stack.
  * @return Return true if the stack is empty, otherwise return false.
@@ -56,7 +56,7 @@ extern void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory
 extern enum Stack_bool Stack_is_empty(struct Stack* stack);
 
 /**
- * Determine if the stack is full.
+ * Judge if the stack is full or not.
  * @see Test_Stack_is_full
  * @param stack The pointer to the stack.
  * @return Return true if the stack is full, otherwise return false.
