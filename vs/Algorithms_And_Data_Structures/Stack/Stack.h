@@ -84,7 +84,7 @@ extern enum Stack_status Stack_push(struct Stack* stack, const void* elem);
  * Pop an element from the stack.
  * @see Test_Stack_pop
  * @param stack The pointer to the stack.
- * @param elem An element that is popped from the stack(You can set NULL to this argument. In that case, no value is set to it).
+ * @param elem An element that is popped from the stack(You can set NULL to this argument. In that case, the popped value is discarded).
  * @return Return failure if the stack is empty, otherwise return success.
  */
 extern enum Stack_status Stack_pop(struct Stack* stack, void* elem);

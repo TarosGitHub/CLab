@@ -86,7 +86,7 @@ extern enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem);
  * @see Test_Queue_enqueue
  * @see Test_Queue_enqueue_dequeue
  * @param queue The pointer to the queue.
- * @param elem An element that is dequeued from the queue(You can set NULL to this argument. In that case, no value is set to it).
+ * @param elem An element that is dequeued from the queue(You can set NULL to this argument. In that case, the dequeued value is discarded).
  * @return Return failure if the queue is empty, otherwise return success.
  */
 extern enum Queue_status Queue_dequeue(struct Queue* queue, void* elem);
