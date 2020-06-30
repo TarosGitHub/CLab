@@ -1,4 +1,5 @@
 #include "CppUnitTest.h"
+#include "hippomocks.h"
 
 extern "C" {
 #include "LinkedList.h"
@@ -71,6 +72,31 @@ namespace TestLinkedList
 			Assert::AreEqual((void*)NULL, (void*)list->head.value);
 			Assert::AreEqual((void*)&list->head, (void*)list->tail);
 			Assert::AreEqual(0U, list->size);
+
+			LinkedList_destroy(list);
+		}
+	};
+
+	TEST_CLASS(Test_LinkedList_add)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			list->value_type_size = sizeof(cell_t);
+			list->head.next = NULL;
+			list->head.value = NULL;
+			list->tail = &list->head;
+			list->size = 0U;
+
+			MockRepository mocks;
+			mocks.ExpectCallFunc(Cell_create).Return(NULL);
+
+			cell_t added_value = 1;
+			LinkedListStatus status = LinkedList_add(list, &added_value);
+
+			Assert::AreEqual<int>(LINKED_LIST_FAILURE, status);
 
 			LinkedList_destroy(list);
 		}

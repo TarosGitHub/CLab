@@ -2,12 +2,28 @@
 #define LINKEDLIST_H
 
 /**
+ * Linked list processing status.
+ */
+enum LinkedListStatus {
+	LINKED_LIST_SUCCESS, /**< Linked list processing success. */
+	LINKED_LIST_FAILURE /**< Linked list processing failure. */
+};
+
+/**
  * Cell structure.
  */
 struct Cell {
 	struct Cell* next; /**< The pointer to the next cell element. */
 	char* value; /**< The value. */
 };
+
+/**
+ * Create a cell.
+ * You must destroy the object created by this function with the destroy function.
+
+ * @return Return a cell object.
+ */
+extern struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_size);
 
 /**
  * Linked list data structure.
@@ -44,5 +60,14 @@ extern void LinkedList_destroy(struct LinkedList* list);
  * @param list The pointer of the linked list.
  */
 extern void LinkedList_delete_all(struct LinkedList* list);
+
+/**
+ * Add the value to the last of the linked list.
+ * @see Test_add
+ * @param list The pointer to the linked list.
+ * @param value The value to be added(You must not set NULL to this argument).
+ * @return Return failure if memory allocation fails, otherwise return success.
+ */
+extern enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value);
 
 #endif /* LINKEDLIST_H */
