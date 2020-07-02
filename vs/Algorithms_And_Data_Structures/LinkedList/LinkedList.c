@@ -10,16 +10,20 @@ struct LinkedList* LinkedList_create(unsigned int value_type_size)
 {
 	struct LinkedList* list;
 
-	list = malloc(sizeof(struct LinkedList));
+	list = (struct LinkedList*)malloc(sizeof(struct LinkedList));
 
 	if (NULL == list) {
 		return NULL;
 	}
 
+	list->head = LinkedListCell_create(NULL, NULL, 0U);
+
+	if (NULL == list->head) {
+		free(list);
+		return NULL;
+	}
+
 	list->value_type_size = value_type_size;
-	list->head.next = NULL;
-	list->head.value = NULL;
-	list->tail = &list->head;
 	list->size = 0U;
 
 	return list;
@@ -28,21 +32,21 @@ struct LinkedList* LinkedList_create(unsigned int value_type_size)
 void LinkedList_destroy(struct LinkedList* list)
 {
 	LinkedList_delete_all(list);
+	LinkedListCell_destroy(list->head);
 	free(list);
 }
 
 void LinkedList_delete_all(struct LinkedList* list)
 {
 	struct LinkedListCell* deleted_cell;
-	for (deleted_cell = list->head.next; NULL != deleted_cell; deleted_cell = list->head.next) {
-		list->head.next = deleted_cell->next;
+	for (deleted_cell = LinkedListCell_get_next(list->head); NULL != deleted_cell; deleted_cell = LinkedListCell_get_next(list->head)) {
+		LinkedListCell_set_next(list->head, LinkedListCell_get_next(deleted_cell));
 		free(deleted_cell);
 	}
 
-	list->tail = &list->head;
 	list->size = 0U;
 }
-
+#if 0
 enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value)
 {
 	struct LinkedListCell* cell;
@@ -64,3 +68,4 @@ void LinkedList_remove(struct LinkedList* list)
 {
 	//TODO
 }
+#endif

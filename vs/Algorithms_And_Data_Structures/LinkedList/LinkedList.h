@@ -15,9 +15,8 @@ enum LinkedListStatus {
  * Linked list data structure.
  */
 struct LinkedList {
+	struct LinkedListCell* head; /**< The head element of the linked list. */
 	unsigned int value_type_size; /**< The size of the value type. */
-	struct LinkedListCell head; /**< The head element of the linked list. */
-	struct LinkedListCell* tail; /**< The pointer of the linked list tail element. */
 	unsigned int size; /**< The number of elements that stored in the linked list. */
 };
 

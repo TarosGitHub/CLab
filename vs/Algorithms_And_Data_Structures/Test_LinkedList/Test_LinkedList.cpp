@@ -13,7 +13,6 @@ namespace TestLinkedList
 {
 	TEST_CLASS(Test_LinkedList_create_destroy)
 	{
-		// TODO: LinkedList_createがNULLを返す場合の単体テストができていない
 	public:
 		
 		TEST_METHOD(normal)
@@ -21,33 +20,21 @@ namespace TestLinkedList
 			LinkedList* list = LinkedList_create(sizeof(cell_t));
 
 			Assert::AreNotEqual((void*)NULL, (void*)list);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head);
 			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
-			Assert::AreEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)NULL, (void*)list->head.value);
-			Assert::AreEqual((void*)&list->head, (void*)list->tail);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
 		}
 
-		TEST_METHOD(a_cell_is_in_the_linked_list)
+		TEST_METHOD(memory_allocation_error)
 		{
+			MockRepository mocks;
+			mocks.ExpectCallFunc(LinkedListCell_create).Return(NULL);
+
 			LinkedList* list = LinkedList_create(sizeof(cell_t));
-			LinkedListCell* cell = (LinkedListCell*)malloc(sizeof(LinkedListCell));
-			cell->next = (LinkedListCell*)NULL;
-			cell->value = (char*)NULL;
-			list->head.next = cell;
-			list->tail = cell;
-			list->size = 1U;
 
-			Assert::AreNotEqual((void*)NULL, (void*)list);
-			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
-			Assert::AreNotEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)NULL, (void*)list->head.value);
-			Assert::AreEqual((void*)cell, (void*)list->tail);
-			Assert::AreEqual(1U, list->size);
-
-			LinkedList_destroy(list);
+			Assert::AreEqual((void*)NULL, (void*)list);
 		}
 	};
 
@@ -55,45 +42,58 @@ namespace TestLinkedList
 	{
 	public:
 
-		TEST_METHOD(a_cell_is_in_the_linked_list)
+		TEST_METHOD(there_is_a_cell_in_the_linked_list)
 		{
 			LinkedList* list = LinkedList_create(sizeof(cell_t));
-			LinkedListCell* cell = (LinkedListCell*)malloc(sizeof(LinkedListCell));
-			cell->next = (LinkedListCell*)NULL;
-			cell->value = (char*)NULL;
-			list->head.next = cell;
-			list->tail = cell;
+			LinkedListCell* cell = LinkedListCell_create(NULL, NULL, 0U);
+			LinkedListCell_set_next(list->head, cell);
 			list->size = 1U;
 
 			LinkedList_delete_all(list);
 
 			Assert::AreNotEqual((void*)NULL, (void*)list);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head);
 			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
-			Assert::AreEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)NULL, (void*)list->head.value);
-			Assert::AreEqual((void*)&list->head, (void*)list->tail);
+			Assert::AreEqual(0U, list->size);
+
+			LinkedList_destroy(list);
+		}
+		
+		TEST_METHOD(there_are_two_cell_in_the_linked_list)
+		{
+			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedListCell* cell1 = LinkedListCell_create(NULL, NULL, 0U);
+			LinkedListCell* cell2 = LinkedListCell_create(NULL, NULL, 0U);
+			LinkedListCell_set_next(list->head, cell1);
+			LinkedListCell_set_next(cell1, cell2);
+			list->size = 2U;
+
+			LinkedList_delete_all(list);
+
+			Assert::AreNotEqual((void*)NULL, (void*)list);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head);
+			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
 		}
 
-		TEST_METHOD(no_cell_is_in_the_linked_list)
+		TEST_METHOD(there_is_no_cell_in_the_linked_list)
 		{
 			LinkedList* list = LinkedList_create(sizeof(cell_t));
 
 			LinkedList_delete_all(list);
 
 			Assert::AreNotEqual((void*)NULL, (void*)list);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head);
 			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
-			Assert::AreEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)NULL, (void*)list->head.value);
-			Assert::AreEqual((void*)&list->head, (void*)list->tail);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
 		}
 	};
 
+#if 0
 	TEST_CLASS(Test_LinkedList_add)
 	{
 	public:
@@ -135,7 +135,6 @@ namespace TestLinkedList
 		}
 
 		// TODO: 追加に失敗した場合のテストができていない -> mallocをMockで置き換えられない
-#if 0
 		TEST_METHOD(adding_fails)
 		{
 			LinkedList* list = LinkedList_create(sizeof(cell_t));
@@ -150,7 +149,6 @@ namespace TestLinkedList
 
 			LinkedList_destroy(list);
 		}
-#endif
 	};
 
 	TEST_CLASS(Test_LinkedList_remove)
@@ -191,4 +189,5 @@ namespace TestLinkedList
 			LinkedList_destroy(list);
 		}
 	};
+#endif
 }
