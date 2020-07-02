@@ -125,9 +125,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LinkedList.c" />
+    <ClCompile Include="LinkedListIterator.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="LinkedListIterator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

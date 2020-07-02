@@ -161,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Test_LinkedList.cpp" />
+    <ClCompile Include="Test_LinkedListIterator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LinkedList\LinkedList.vcxproj">
