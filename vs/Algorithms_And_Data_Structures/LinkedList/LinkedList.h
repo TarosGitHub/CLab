@@ -56,6 +56,7 @@ extern void LinkedList_delete_all(struct LinkedList* list);
 /**
  * Add the value to the last of the linked list.
  * @see Test_add
+ * @see Test_LinkedList_add
  * @param list The pointer to the linked list.
  * @param value The value to be added(You must not set NULL to this argument).
  * @return Return failure if memory allocation fails, otherwise return success.
