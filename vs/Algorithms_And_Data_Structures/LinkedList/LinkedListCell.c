@@ -35,3 +35,8 @@ void LinkedListCell_destroy(struct LinkedListCell* cell)
 	free(cell->value);
 	free(cell);
 }
+
+enum Boolean LinkedListCell_has_next(struct LinkedListCell* cell)
+{
+	return NULL != cell->next ? TRUE : FALSE;
+}

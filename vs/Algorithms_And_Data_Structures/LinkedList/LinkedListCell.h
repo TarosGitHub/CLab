@@ -1,6 +1,8 @@
 #if !defined(LINKEDLISTCELL_H)
 #define LINKEDLISTCELL_H
 
+#include "Common.h"
+
 /**
  * Linked list cell structure.
  */
@@ -29,5 +31,12 @@ extern struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next,
  * @param cell The pointer of the linked list cell.
  */
 extern void LinkedListCell_destroy(struct LinkedListCell* cell);
+
+/**
+ * Judge if the cell has the next pointer or not.
+ * @see Test_LinkedListCell_has_next
+ * @param cell The pointer of the linked list cell.
+ */
+extern enum Boolean LinkedListCell_has_next(struct LinkedListCell* cell);
 
 #endif /* LINKEDLISTCELL_H */

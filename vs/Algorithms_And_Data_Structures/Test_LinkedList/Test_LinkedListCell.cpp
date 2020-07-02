@@ -38,4 +38,34 @@ namespace TestLinkedCell
 			LinkedListCell_destroy(cell);
 		}
 	};
+
+	TEST_CLASS(Test_LinkedListCell_has_next)
+	{
+	public:
+
+		TEST_METHOD(has_next_pointer)
+		{
+			LinkedListCell next_cell;
+			value_t value = 1;
+			LinkedListCell* cell = LinkedListCell_create(&next_cell, &value, sizeof(value_t));
+
+			Boolean has_next = LinkedListCell_has_next(cell);
+
+			Assert::AreEqual<int>(TRUE, has_next);
+
+			LinkedListCell_destroy(cell);
+		}
+
+		TEST_METHOD(do_not_has_next_pointer)
+		{
+			value_t value = 1;
+			LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+			Boolean has_next = LinkedListCell_has_next(cell);
+
+			Assert::AreEqual<int>(FALSE, has_next);
+
+			LinkedListCell_destroy(cell);
+		}
+	};
 }
