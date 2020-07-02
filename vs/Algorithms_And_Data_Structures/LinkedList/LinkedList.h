@@ -2,6 +2,7 @@
 #define LINKEDLIST_H
 
 #include "LinkedListCell.h"
+#include "LinkedListIterator.h"
 
 /**
  * Linked list processing status.
@@ -35,16 +36,25 @@ extern struct LinkedList* LinkedList_create(unsigned int value_type_size);
  * This function destroy the object created by the create function.
  * @see LinkedList_create
  * @see Test_LinkedList_create_destroy
- * @param list The pointer of the linked list.
+ * @param list The pointer to the linked list.
  */
 extern void LinkedList_destroy(struct LinkedList* list);
 
 /**
  * Delete all cells in the linked list.
  * @see Test_LinkedList_delete_all
- * @param list The pointer of the linked list.
+ * @param list The pointer to the linked list.
  */
 extern void LinkedList_delete_all(struct LinkedList* list);
+
+/**
+ * Set the iterator at the head of the list.
+ * The head is not the first cell element of the list. The next cell element of the head is the first cell element of the list.
+ * @see Test_LinkedList_begin
+ * @param list The pointer to the linked list.
+ * @param iterator The pointer to the iterator to set.
+ */
+extern void LinkedList_begin(struct LinkedList* list, struct LinkedListIterator* iterator);
 
 /**
  * Add the value to the last of the linked list.

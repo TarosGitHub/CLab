@@ -46,6 +46,12 @@ void LinkedList_delete_all(struct LinkedList* list)
 
 	list->size = 0U;
 }
+
+void LinkedList_begin(struct LinkedList* list, struct LinkedListIterator* iterator)
+{
+	LinkedListIterator_init(iterator, list->head);
+}
+
 #if 0
 enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value)
 {

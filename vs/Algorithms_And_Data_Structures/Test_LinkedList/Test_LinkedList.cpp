@@ -93,6 +93,23 @@ namespace TestLinkedList
 		}
 	};
 
+	TEST_CLASS(Test_LinkedList_begin)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedListIterator iterator;
+
+			LinkedList_begin(list, &iterator);
+
+			Assert::AreEqual((void*)list->head, (void*)iterator.current);
+
+			LinkedList_destroy(list);
+		}
+	};
+
 #if 0
 	TEST_CLASS(Test_LinkedList_add)
 	{
