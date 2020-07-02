@@ -17,12 +17,10 @@ namespace TestLinkedListIterator
 		TEST_METHOD(normal)
 		{
 			LinkedListCell current_cell;
-			LinkedListCell previous_cell;
 
-			LinkedListIterator target = LinkedListIterator_new(&current_cell, &previous_cell);
+			LinkedListIterator target = LinkedListIterator_new(&current_cell);
 
 			Assert::AreEqual((void*)&current_cell, (void*)target.current);
-			Assert::AreEqual((void*)&previous_cell, (void*)target.previous);
 		}
 	};
 
@@ -33,13 +31,11 @@ namespace TestLinkedListIterator
 		TEST_METHOD(normal)
 		{
 			LinkedListCell current_cell;
-			LinkedListCell previous_cell;
 			LinkedListIterator target;
 			
-			LinkedListIterator_init(&target, &current_cell, &previous_cell);
+			LinkedListIterator_init(&target, &current_cell);
 
 			Assert::AreEqual((void*)&current_cell, (void*)target.current);
-			Assert::AreEqual((void*)&previous_cell, (void*)target.previous);
 		}
 	};
 
@@ -54,7 +50,7 @@ namespace TestLinkedListIterator
 
 		TEST_METHOD(has_next_pointer)
 		{
-			LinkedListIterator target = LinkedListIterator_new(cell_has_next, NULL);
+			LinkedListIterator target = LinkedListIterator_new(cell_has_next);
 
 			Boolean has_next = LinkedListIterator_has_next(&target);
 
@@ -63,7 +59,7 @@ namespace TestLinkedListIterator
 
 		TEST_METHOD(does_not_have_next_pointer)
 		{
-			LinkedListIterator target = LinkedListIterator_new(cell_has_no_next, NULL);
+			LinkedListIterator target = LinkedListIterator_new(cell_has_no_next);
 
 			Boolean has_next = LinkedListIterator_has_next(&target);
 
@@ -82,23 +78,21 @@ namespace TestLinkedListIterator
 
 		TEST_METHOD(move_next)
 		{
-			LinkedListIterator target = LinkedListIterator_new(first_cell, head_cell);
+			LinkedListIterator target = LinkedListIterator_new(first_cell);
 
 			LinkedListIterator_next(&target);
 
 			Assert::AreEqual((void*)last_cell, (void*)target.current);
-			Assert::AreEqual((void*)first_cell, (void*)target.previous);
 		}
 
 		TEST_METHOD(overrun)
 		{
-			LinkedListIterator target = LinkedListIterator_new(first_cell, head_cell);
+			LinkedListIterator target = LinkedListIterator_new(first_cell);
 
 			LinkedListIterator_next(&target);
 			LinkedListIterator_next(&target);
 
 			Assert::AreEqual((void*)NULL, (void*)target.current);
-			Assert::AreEqual((void*)last_cell, (void*)target.previous);
 		}
 	};
 }

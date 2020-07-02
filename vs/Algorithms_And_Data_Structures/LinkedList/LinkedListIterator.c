@@ -1,10 +1,9 @@
 #include <stddef.h>
 #include "LinkedListIterator.h"
 
-void LinkedListIterator_init(struct LinkedListIterator* iterator, struct LinkedListCell* current, struct LinkedListCell* previous)
+void LinkedListIterator_init(struct LinkedListIterator* iterator, struct LinkedListCell* current)
 {
 	iterator->current = current;
-	iterator->previous = previous;
 }
 
 enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* iterator)
@@ -14,6 +13,5 @@ enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* iterator)
 
 void LinkedListIterator_next(struct LinkedListIterator* iterator)
 {
-	iterator->previous = iterator->current;
 	iterator->current = LinkedListCell_get_next(iterator->current);
 }

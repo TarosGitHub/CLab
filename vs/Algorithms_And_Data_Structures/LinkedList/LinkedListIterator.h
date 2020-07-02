@@ -9,26 +9,23 @@
  */
 struct LinkedListIterator {
 	struct LinkedListCell* current; /**< The pointer to the current cell element. */
-	struct LinkedListCell* previous; /**< The pointer to the previous of the current cell element. */
 };
 
 /**
  * Create a linked list iterator.
  * @see Test_LinkedListIterator_new
  * @param current The pointer to the current cell element.
- * @param previous The pointer to the previous of the current cell element.
  * @return Return a linked list iterator object.
  */
-#define LinkedListIterator_new(current, previous) {(current), (previous)}
+#define LinkedListIterator_new(current) {(current)}
 
 /**
  * Initialize the linked list iterator.
  * @see Test_LinkedListIterator_init
  * @param iterator The pointer to the linked list iterator.
  * @param current The pointer to the current cell element.
- * @param previous The pointer to the previous of the current cell element.
  */
-extern void LinkedListIterator_init(struct LinkedListIterator* iterator, struct LinkedListCell* current, struct LinkedListCell* previous);
+extern void LinkedListIterator_init(struct LinkedListIterator* iterator, struct LinkedListCell* current);
 
 /**
  * Judge if the iterator has the next pointer or not.
