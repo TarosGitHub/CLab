@@ -7,7 +7,7 @@
 #include <string.h>
 #include "LinkedList.h"
 
-struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_size)
+struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_type_size)
 {
 	struct Cell* cell;
 
@@ -18,14 +18,14 @@ struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_size
 	}
 
 	cell->next = next;
-	cell->value = (char*)malloc(value_size);
+	cell->value = (char*)malloc(value_type_size);
 
 	if (NULL == cell->value) {
 		free(cell);
 		return NULL;
 	}
 
-	memcpy(cell->value, value, value_size);
+	memcpy(cell->value, value, value_type_size);
 
 	return cell;
 }

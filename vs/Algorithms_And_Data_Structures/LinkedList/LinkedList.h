@@ -20,10 +20,12 @@ struct Cell {
 /**
  * Create a cell.
  * You must destroy the object created by this function with the destroy function.
-
- * @return Return a cell object.
+ * @param next The pointer to the next cell.
+ * @param value The value in the cell.
+ * @param value_type_size The size of the value type.
+ * @return Return NULL if memory allocation fails, otherwise return a cell object.
  */
-extern struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_size);
+extern struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_type_size);
 
 /**
  * Linked list data structure.
