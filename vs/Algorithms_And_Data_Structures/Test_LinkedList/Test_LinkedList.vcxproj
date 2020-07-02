@@ -161,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Test_LinkedList.cpp" />
+    <ClCompile Include="Test_LinkedListCell.cpp" />
     <ClCompile Include="Test_LinkedListIterator.cpp" />
   </ItemGroup>
   <ItemGroup>
