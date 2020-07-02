@@ -55,12 +55,19 @@ extern void LinkedList_delete_all(struct LinkedList* list);
 
 /**
  * Add the value to the last of the linked list.
- * @see Test_add
  * @see Test_LinkedList_add
  * @param list The pointer to the linked list.
  * @param value The value to be added(You must not set NULL to this argument).
  * @return Return failure if memory allocation fails, otherwise return success.
  */
 extern enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value);
+
+/**
+ * Remove the value from the last of the linked list.
+ * This function do nothing if the linked list is empty.
+ * @see Test_LinkedList_remove
+ * @param list The pointer to the linked list.
+ */
+extern void LinkedList_remove(struct LinkedList* list);
 
 #endif /* LINKEDLIST_H */

@@ -152,4 +152,43 @@ namespace TestLinkedList
 		}
 #endif
 	};
+
+	TEST_CLASS(Test_LinkedList_remove)
+	{
+	public:
+
+		TEST_METHOD(a_cell_is_in_the_linked_list)
+		{
+			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			cell_t added_value1 = 1;
+			LinkedListStatus status1 = LinkedList_add(list, &added_value1);
+
+			LinkedList_remove(list);
+
+			Assert::AreNotEqual((void*)NULL, (void*)list->head.next);
+			Assert::AreEqual((void*)&list->head, (void*)list->tail);
+			Assert::AreEqual(0U, list->size);
+
+			LinkedList_destroy(list);
+		}
+
+		TEST_METHOD(two_cell_is_in_the_linked_list)
+		{
+			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			cell_t added_value1 = 1;
+			LinkedListStatus status1 = LinkedList_add(list, &added_value1);
+			cell_t added_value2 = 2;
+			LinkedListStatus status2 = LinkedList_add(list, &added_value2);
+
+			LinkedList_remove(list);
+
+			Assert::AreNotEqual((void*)NULL, (void*)list->head.next);
+			Assert::AreEqual((void*)NULL, (void*)list->head.next->next);
+			Assert::AreEqual((void*)list->head.next, (void*)list->tail);
+			Assert::AreEqual(added_value1, *(cell_t*)list->head.next->value);
+			Assert::AreEqual(1U, list->size);
+
+			LinkedList_destroy(list);
+		}
+	};
 }

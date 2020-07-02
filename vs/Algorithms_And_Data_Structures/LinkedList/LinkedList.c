@@ -85,3 +85,8 @@ enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value)
 
 	return LINKED_LIST_SUCCESS;
 }
+
+void LinkedList_remove(struct LinkedList* list)
+{
+	//TODO
+}
