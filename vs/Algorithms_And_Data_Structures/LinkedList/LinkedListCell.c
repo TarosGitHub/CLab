@@ -40,3 +40,13 @@ enum Boolean LinkedListCell_has_next(struct LinkedListCell* cell)
 {
 	return NULL != cell->next ? TRUE : FALSE;
 }
+
+struct LinkedListCell* LinkedListCell_get_next(struct LinkedListCell* cell)
+{
+	return cell->next;
+}
+
+void LinkedListCell_set_next(struct LinkedListCell* cell, struct LinkedListCell* next)
+{
+	cell->next = next;
+}

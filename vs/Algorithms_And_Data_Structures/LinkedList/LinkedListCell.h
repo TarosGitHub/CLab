@@ -39,4 +39,20 @@ extern void LinkedListCell_destroy(struct LinkedListCell* cell);
  */
 extern enum Boolean LinkedListCell_has_next(struct LinkedListCell* cell);
 
+/**
+ * Get the pointer to the next cell element.
+ * @see Test_LinkedListCell_get_next
+ * @param cell The pointer of the linked list cell.
+ * @return Return the pointer to the next cell element. If the cell doesn't have it, return NULL.
+ */
+extern struct LinkedListCell* LinkedListCell_get_next(struct LinkedListCell* cell);
+
+/**
+ * Set the pointer to the next cell element.
+ * @see Test_LinkedListCell_set_next
+ * @param cell The pointer of the linked list cell.
+ * @param next The pointer og the next cell element.
+ */
+extern void LinkedListCell_set_next(struct LinkedListCell* cell, struct LinkedListCell* next);
+
 #endif /* LINKEDLISTCELL_H */

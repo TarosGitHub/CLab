@@ -56,7 +56,7 @@ namespace TestLinkedCell
 			LinkedListCell_destroy(cell);
 		}
 
-		TEST_METHOD(do_not_has_next_pointer)
+		TEST_METHOD(does_not_have_next_pointer)
 		{
 			value_t value = 1;
 			LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
@@ -64,6 +64,54 @@ namespace TestLinkedCell
 			Boolean has_next = LinkedListCell_has_next(cell);
 
 			Assert::AreEqual<int>(FALSE, has_next);
+
+			LinkedListCell_destroy(cell);
+		}
+	};
+
+	TEST_CLASS(Test_LinkedListCell_get_next)
+	{
+	public:
+
+		TEST_METHOD(has_next_pointer)
+		{
+			LinkedListCell next_cell;
+			value_t value = 1;
+			LinkedListCell* cell = LinkedListCell_create(&next_cell, &value, sizeof(value_t));
+
+			LinkedListCell* next = LinkedListCell_get_next(cell);
+
+			Assert::AreEqual((void*)&next_cell, (void*)next);
+
+			LinkedListCell_destroy(cell);
+		}
+
+		TEST_METHOD(does_not_have_next_pointer)
+		{
+			value_t value = 1;
+			LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+			LinkedListCell* next = LinkedListCell_get_next(cell);
+
+			Assert::AreEqual((void*)NULL, (void*)next);
+
+			LinkedListCell_destroy(cell);
+		}
+	};
+
+	TEST_CLASS(Test_LinkedListCell_set_next)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			value_t value = 1;
+			LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+			LinkedListCell next_cell;
+			LinkedListCell_set_next(cell, &next_cell);
+
+			Assert::AreEqual((void*)&next_cell, (void*)cell->next);
 
 			LinkedListCell_destroy(cell);
 		}
