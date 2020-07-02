@@ -37,6 +37,7 @@ extern void LinkedListCell_destroy(struct LinkedListCell* cell);
  * Judge if the cell has the next pointer or not.
  * @see Test_LinkedListCell_has_next
  * @param cell The pointer to the linked list cell.
+ * @return Return true if the cell has the next pointer, otherwise return false.
  */
 extern enum Boolean LinkedListCell_has_next(struct LinkedListCell* cell);
 
