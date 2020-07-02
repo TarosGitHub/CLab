@@ -36,7 +36,9 @@ struct LinkedList* LinkedList_create(unsigned int value_type_size)
 
 	list = malloc(sizeof(struct LinkedList));
 
-	/* TODO: malloc‚ÉŽ¸”s‚µ‚½ê‡ANULL‚ð•Ô‚¹ */
+	if (NULL == list) {
+		return NULL;
+	}
 
 	list->value_type_size = value_type_size;
 	list->head.next = NULL;

@@ -13,6 +13,7 @@ namespace TestLinkedList
 {
 	TEST_CLASS(Test_LinkedList_create_destroy)
 	{
+		// TODO: LinkedList_createがNULLを返す場合の単体テストができていない
 	public:
 		
 		TEST_METHOD(normal)

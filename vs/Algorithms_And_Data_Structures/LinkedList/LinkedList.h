@@ -41,7 +41,7 @@ struct LinkedList {
  * @see LinkedList_destroy
  * @see Test_LinkedList_create_destroy
  * @param value_type_size The size of the value type.
- * @return Return a linked list object.
+ * @return Return NULL if memory allocation fails, otherwise return a linked list object.
  */
 extern struct LinkedList* LinkedList_create(unsigned int value_type_size);
 
