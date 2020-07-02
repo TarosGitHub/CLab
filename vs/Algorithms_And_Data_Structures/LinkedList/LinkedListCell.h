@@ -61,7 +61,7 @@ extern void LinkedListCell_set_next(struct LinkedListCell* cell, struct LinkedLi
  * Get the value.
  * @see Test_LinkedListCell_get
  * @param cell The pointer to the linked list cell.
- * @param value The getted value. The size of the value type should match the size set at initialization.
+ * @param value The getted value. The size of the value type must match the size set at initialization.
  *              You must not set NULL to this argument. 
  */
 extern void LinkedListCell_get(struct LinkedListCell* cell, void* value);
@@ -70,7 +70,7 @@ extern void LinkedListCell_get(struct LinkedListCell* cell, void* value);
  * Set the value.
  * @see Test_LinkedListCell_set
  * @param cell The pointer to the linked list cell.
- * @param value The value to set. The size of the value type should match the size set at initialization.
+ * @param value The value to set. The size of the value type must match the size set at initialization.
  *              You must not set NULL to this argument.
  */
 extern void LinkedListCell_set(struct LinkedListCell* cell, void* value);

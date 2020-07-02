@@ -15,3 +15,13 @@ void LinkedListIterator_next(struct LinkedListIterator* iterator)
 {
 	iterator->current = LinkedListCell_get_next(iterator->current);
 }
+
+void LinkedListIterator_get(struct LinkedListIterator* iterator, void* value)
+{
+	LinkedListCell_get(iterator->current, value);
+}
+
+void LinkedListIterator_set(struct LinkedListIterator* iterator, void* value)
+{
+	LinkedListCell_set(iterator->current, value);
+}

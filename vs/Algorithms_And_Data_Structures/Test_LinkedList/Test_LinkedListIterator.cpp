@@ -95,4 +95,42 @@ namespace TestLinkedListIterator
 			Assert::AreEqual((void*)NULL, (void*)target.current);
 		}
 	};
+
+	TEST_CLASS(Test_LinkedListIterator_get)
+	{
+	public:
+
+		value_t value = 1;
+		LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+		TEST_METHOD(normal)
+		{
+			LinkedListIterator target = LinkedListIterator_new(cell);
+
+			value_t getted_value = 0;
+			LinkedListIterator_get(&target, &getted_value);
+
+			Assert::AreEqual(value, getted_value);
+		}
+	};
+
+	TEST_CLASS(Test_LinkedListIterator_set)
+	{
+	public:
+
+		value_t value = 1;
+		LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+		TEST_METHOD(normal)
+		{
+			LinkedListIterator target = LinkedListIterator_new(cell);
+
+			value_t setted_value = 2;
+			LinkedListIterator_set(&target, &setted_value);
+
+			value_t actual_value;
+			LinkedListCell_get(cell, &actual_value);
+			Assert::AreEqual(setted_value, actual_value);
+		}
+	};
 }

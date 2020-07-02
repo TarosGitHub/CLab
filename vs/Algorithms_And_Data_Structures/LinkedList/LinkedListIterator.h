@@ -46,4 +46,24 @@ extern enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* itera
  */
 extern void LinkedListIterator_next(struct LinkedListIterator* iterator);
 
+/**
+ * Get the value from the pointing cell.
+ * You must not call this function if the iterator points the head of the list.
+ * @see Test_LinkedListIterator_get
+ * @param iterator The pointer to the linked list iterator.
+ * @param value The getted value. The size of the value type must match the size set at list initialization.
+ *              You must not set NULL to this argument.
+ */
+extern void LinkedListIterator_get(struct LinkedListIterator* iterator, void* value);
+
+/**
+ * Set the value to the pointing cell.
+ * You must not call this function if the iterator points the head of the list.
+ * @see Test_LinkedListIterator_set
+ * @param iterator The pointer to the linked list iterator.
+ * @param value The value to set. The size of the value type must match the size set at list initialization.
+ *              You must not set NULL to this argument.
+ */
+extern void LinkedListIterator_set(struct LinkedListIterator* iterator, void* value);
+
 #endif /* LINKEDLISTITERATOR_H */
