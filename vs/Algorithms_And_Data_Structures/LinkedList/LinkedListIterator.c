@@ -15,5 +15,5 @@ enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* iterator)
 void LinkedListIterator_next(struct LinkedListIterator* iterator)
 {
 	iterator->previous = iterator->current;
-	iterator->current = iterator->current->next;
+	iterator->current = LinkedListCell_get_next(iterator->current);
 }
