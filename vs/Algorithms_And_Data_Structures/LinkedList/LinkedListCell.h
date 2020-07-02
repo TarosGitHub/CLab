@@ -8,6 +8,7 @@
  */
 struct LinkedListCell {
 	struct LinkedListCell* next; /**< The pointer to the next cell element. */
+	unsigned int value_type_size; /**< The size of the value type. */
 	char* value; /**< The value. */
 };
 

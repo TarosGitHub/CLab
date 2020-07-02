@@ -21,6 +21,7 @@ namespace TestLinkedCell
 			struct LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
 
 			Assert::AreEqual((void*)NULL, (void*)cell->next);
+			Assert::AreEqual(sizeof(value_t), cell->value_type_size);
 			Assert::AreEqual(value, *(value_t*)cell->value);
 
 			LinkedListCell_destroy(cell);
@@ -33,6 +34,7 @@ namespace TestLinkedCell
 			struct LinkedListCell* cell = LinkedListCell_create(&next_cell, &value, sizeof(value_t));
 
 			Assert::AreEqual((void*)&next_cell, (void*)cell->next);
+			Assert::AreEqual(sizeof(value_t), cell->value_type_size);
 			Assert::AreEqual(value, *(value_t*)cell->value);
 
 			LinkedListCell_destroy(cell);

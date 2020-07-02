@@ -18,14 +18,15 @@ struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* 
 	}
 
 	cell->next = next;
-	cell->value = (char*)malloc(value_type_size);
+	cell->value_type_size = value_type_size;
+	cell->value = (char*)malloc(cell->value_type_size);
 
 	if (NULL == cell->value) {
 		free(cell);
 		return NULL;
 	}
 
-	memcpy(cell->value, value, value_type_size);
+	memcpy(cell->value, value, cell->value_type_size);
 
 	return cell;
 }
