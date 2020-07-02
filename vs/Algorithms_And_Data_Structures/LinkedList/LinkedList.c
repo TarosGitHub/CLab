@@ -7,7 +7,9 @@
 #include <string.h>
 #include "LinkedList.h"
 
-struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size)
+struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size);
+
+static struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size)
 {
 	struct LinkedListCell* cell;
 

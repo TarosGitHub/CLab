@@ -18,16 +18,6 @@ struct LinkedListCell {
 };
 
 /**
- * Create a cell for the linked list.
- * You must destroy the object created by this function with the destroy function.
- * @param next The pointer to the next cell.
- * @param value The value in the cell.
- * @param value_type_size The size of the value type.
- * @return Return NULL if memory allocation fails, otherwise return a cell object.
- */
-extern struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size);
-
-/**
  * Linked list data structure.
  */
 struct LinkedList {
