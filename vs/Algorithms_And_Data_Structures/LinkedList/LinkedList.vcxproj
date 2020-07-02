@@ -134,6 +134,11 @@
     <ClInclude Include="LinkedListCell.h" />
     <ClInclude Include="LinkedListIterator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{0b78d30a-ca58-4553-b0e5-2416d67f1512}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

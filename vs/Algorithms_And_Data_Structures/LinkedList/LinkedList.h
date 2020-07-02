@@ -1,20 +1,14 @@
 #if !defined(LINKEDLIST_H)
 #define LINKEDLIST_H
 
+#include "LinkedListCell.h"
+
 /**
  * Linked list processing status.
  */
 enum LinkedListStatus {
 	LINKED_LIST_SUCCESS, /**< Linked list processing success. */
 	LINKED_LIST_FAILURE /**< Linked list processing failure. */
-};
-
-/**
- * Linked list cell structure.
- */
-struct LinkedListCell {
-	struct LinkedListCell* next; /**< The pointer to the next cell element. */
-	char* value; /**< The value. */
 };
 
 /**

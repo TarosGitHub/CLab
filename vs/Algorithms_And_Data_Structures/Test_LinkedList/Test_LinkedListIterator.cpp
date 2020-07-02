@@ -14,7 +14,7 @@ namespace TestLinkedListIterator
 
 		TEST_METHOD(normal)
 		{
-			//
+			LinkedListIterator* terget;
 		}
 	};
 }

@@ -4,33 +4,7 @@
  */
 
 #include <stdlib.h>
-#include <string.h>
 #include "LinkedList.h"
-
-struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size);
-
-static struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size)
-{
-	struct LinkedListCell* cell;
-
-	cell = malloc(sizeof(struct LinkedListCell));
-
-	if (NULL == cell) {
-		return NULL;
-	}
-
-	cell->next = next;
-	cell->value = (char*)malloc(value_type_size);
-
-	if (NULL == cell->value) {
-		free(cell);
-		return NULL;
-	}
-
-	memcpy(cell->value, value, value_type_size);
-
-	return cell;
-}
 
 struct LinkedList* LinkedList_create(unsigned int value_type_size)
 {

@@ -3,5 +3,6 @@
 
 enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* iterator)
 {
-	return NULL != iterator->current->next ? TRUE : FALSE;
+	//return NULL != iterator->current->next ? TRUE : FALSE;
+	return TRUE;
 }
