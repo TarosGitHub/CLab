@@ -38,4 +38,15 @@ extern void LinkedListIterator_init(struct LinkedListIterator* iterator, struct 
  */
 extern enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* iterator);
 
+/**
+ * Move to the next cell element.
+ * If this function is called while pointing to the end of the list, the iterator points to invalid.
+ * To avoid that, check if the next cell exists. Or if that happens, initialize it. 
+ * @see LinkedListIterator_has_next
+ * @see LinkedListIterator_init
+ * @see Test_LinkedListIterator_next
+ * @param iterator The pointer to the linked list iterator.
+ */
+extern void LinkedListIterator_next(struct LinkedListIterator* iterator);
+
 #endif /* LINKEDLISTITERATOR_H */

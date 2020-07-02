@@ -11,3 +11,9 @@ enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* iterator)
 {
 	return LinkedListCell_has_next(iterator->current);
 }
+
+void LinkedListIterator_next(struct LinkedListIterator* iterator)
+{
+	iterator->previous = iterator->current;
+	iterator->current = iterator->current->next;
+}
