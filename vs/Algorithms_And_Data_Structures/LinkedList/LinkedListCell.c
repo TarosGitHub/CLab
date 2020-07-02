@@ -51,3 +51,13 @@ void LinkedListCell_set_next(struct LinkedListCell* cell, struct LinkedListCell*
 {
 	cell->next = next;
 }
+
+void LinkedListCell_get(struct LinkedListCell* cell, void* value)
+{
+	memcpy(value, cell->value, cell->value_type_size);
+}
+
+void LinkedListCell_set(struct LinkedListCell* cell, void* value)
+{
+	memcpy(cell->value, value, cell->value_type_size);
+}

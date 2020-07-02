@@ -118,4 +118,40 @@ namespace TestLinkedCell
 			LinkedListCell_destroy(cell);
 		}
 	};
+	
+	TEST_CLASS(Test_LinkedListCell_get)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			value_t value = 1;
+			struct LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+			value_t getted_value = 0;
+			LinkedListCell_get(cell, &getted_value);
+
+			Assert::AreEqual(value, getted_value);
+
+			LinkedListCell_destroy(cell);
+		}
+	};
+
+	TEST_CLASS(Test_LinkedListCell_set)
+	{
+	public:
+
+		TEST_METHOD(normal)
+		{
+			value_t value = 1;
+			struct LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+			value_t value_to_set = 2;
+			LinkedListCell_get(cell, &value_to_set);
+
+			Assert::AreEqual(value_to_set, *(value_t*)cell->value);
+
+			LinkedListCell_destroy(cell);
+		}
+	};
 }
