@@ -7,11 +7,11 @@
 #include <string.h>
 #include "LinkedList.h"
 
-struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_type_size)
+struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size)
 {
-	struct Cell* cell;
+	struct LinkedListCell* cell;
 
-	cell = malloc(sizeof(struct Cell));
+	cell = malloc(sizeof(struct LinkedListCell));
 
 	if (NULL == cell) {
 		return NULL;
@@ -57,7 +57,7 @@ void LinkedList_destroy(struct LinkedList* list)
 
 void LinkedList_delete_all(struct LinkedList* list)
 {
-	struct Cell* deleted_cell;
+	struct LinkedListCell* deleted_cell;
 	for (deleted_cell = list->head.next; NULL != deleted_cell; deleted_cell = list->head.next) {
 		list->head.next = deleted_cell->next;
 		free(deleted_cell);
@@ -69,9 +69,9 @@ void LinkedList_delete_all(struct LinkedList* list)
 
 enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value)
 {
-	struct Cell* cell;
+	struct LinkedListCell* cell;
 
-	cell = Cell_create(NULL, value, list->value_type_size);
+	cell = LinkedListCell_create(NULL, value, list->value_type_size);
 
 	if (NULL == cell) {
 		return LINKED_LIST_FAILURE;

@@ -10,30 +10,30 @@ enum LinkedListStatus {
 };
 
 /**
- * Cell structure.
+ * Linked list cell structure.
  */
-struct Cell {
-	struct Cell* next; /**< The pointer to the next cell element. */
+struct LinkedListCell {
+	struct LinkedListCell* next; /**< The pointer to the next cell element. */
 	char* value; /**< The value. */
 };
 
 /**
- * Create a cell.
+ * Create a cell for the linked list.
  * You must destroy the object created by this function with the destroy function.
  * @param next The pointer to the next cell.
  * @param value The value in the cell.
  * @param value_type_size The size of the value type.
  * @return Return NULL if memory allocation fails, otherwise return a cell object.
  */
-extern struct Cell* Cell_create(struct Cell* next, void* value, unsigned int value_type_size);
+extern struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size);
 
 /**
  * Linked list data structure.
  */
 struct LinkedList {
 	unsigned int value_type_size; /**< The size of the value type. */
-	struct Cell head; /**< The head element of the linked list. */
-	struct Cell* tail; /**< The pointer of the linked list tail element. */
+	struct LinkedListCell head; /**< The head element of the linked list. */
+	struct LinkedListCell* tail; /**< The pointer of the linked list tail element. */
 	unsigned int size; /**< The number of elements that stored in the linked list. */
 };
 

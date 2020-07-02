@@ -33,8 +33,8 @@ namespace TestLinkedList
 		TEST_METHOD(a_cell_is_in_the_linked_list)
 		{
 			LinkedList* list = LinkedList_create(sizeof(cell_t));
-			Cell* cell = (Cell*)malloc(sizeof(Cell));
-			cell->next = (Cell*)NULL;
+			LinkedListCell* cell = (LinkedListCell*)malloc(sizeof(LinkedListCell));
+			cell->next = (LinkedListCell*)NULL;
 			cell->value = (char*)NULL;
 			list->head.next = cell;
 			list->tail = cell;
@@ -58,8 +58,8 @@ namespace TestLinkedList
 		TEST_METHOD(a_cell_is_in_the_linked_list)
 		{
 			LinkedList* list = LinkedList_create(sizeof(cell_t));
-			Cell* cell = (Cell*)malloc(sizeof(Cell));
-			cell->next = (Cell*)NULL;
+			LinkedListCell* cell = (LinkedListCell*)malloc(sizeof(LinkedListCell));
+			cell->next = (LinkedListCell*)NULL;
 			cell->value = (char*)NULL;
 			list->head.next = cell;
 			list->tail = cell;
@@ -92,7 +92,7 @@ namespace TestLinkedList
 			list->size = 0U;
 
 			MockRepository mocks;
-			mocks.ExpectCallFunc(Cell_create).Return(NULL);
+			mocks.ExpectCallFunc(LinkedListCell_create).Return(NULL);
 
 			cell_t added_value = 1;
 			LinkedListStatus status = LinkedList_add(list, &added_value);
