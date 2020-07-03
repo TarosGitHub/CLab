@@ -24,7 +24,7 @@ struct Stack {
 /**
  * Create a stack.
  * @see Test_Stack_new
- * @param elem_type The size of the element type.
+ * @param elem_type The type of the element.
  * @param memory The memory area of the stack.
  * @param capacity The maximum number of elements on the stack.
  * @return Return a stack object.

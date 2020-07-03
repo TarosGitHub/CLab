@@ -25,7 +25,7 @@ struct Queue {
 /**
  * Create a queue.
  * @see Test_Queue_new
- * @param elem_type The size of the element type.
+ * @param elem_type The type of the element.
  * @param memory The memory area of the queue.
  * @param capacity The maximum number of elements on the queue.
  * @return Return a queue object.
