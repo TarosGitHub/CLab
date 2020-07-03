@@ -1,4 +1,3 @@
-#include <stddef.h>
 #include <string.h>
 #include "Stack.h"
 
@@ -12,14 +11,14 @@ void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory, unsig
 	stack->pointer = 0U;
 }
 
-enum Stack_bool Stack_is_empty(struct Stack* stack)
+enum Boolean Stack_is_empty(struct Stack* stack)
 {
-	return (stack->pointer == 0U ? STACK_TRUE : STACK_FALSE);
+	return (stack->pointer == 0U ? TRUE : FALSE);
 }
 
-enum Stack_bool Stack_is_full(struct Stack* stack)
+enum Boolean Stack_is_full(struct Stack* stack)
 {
-	return (stack->pointer == stack->capacity ? STACK_TRUE : STACK_FALSE);
+	return (stack->pointer == stack->capacity ? TRUE : FALSE);
 }
 
 unsigned int Stack_size(struct Stack* stack)

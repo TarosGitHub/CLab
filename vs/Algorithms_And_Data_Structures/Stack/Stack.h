@@ -1,13 +1,7 @@
 #if !defined(STACK_H)
 #define STACK_H
 
-/**
- * Boolean type.
- */
-enum Stack_bool {
-	STACK_FALSE, /**< False is zero. */
-	STACK_TRUE /**< True is not zero. */
-};
+#include "Common.h"
 
 /**
  * Stack processing status.
@@ -53,7 +47,7 @@ extern void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory
  * @param stack The pointer to the stack.
  * @return Return true if the stack is empty, otherwise return false.
  */
-extern enum Stack_bool Stack_is_empty(struct Stack* stack);
+extern enum Boolean Stack_is_empty(struct Stack* stack);
 
 /**
  * Judge if the stack is full or not.
@@ -61,7 +55,7 @@ extern enum Stack_bool Stack_is_empty(struct Stack* stack);
  * @param stack The pointer to the stack.
  * @return Return true if the stack is full, otherwise return false.
  */
-extern enum Stack_bool Stack_is_full(struct Stack* stack);
+extern enum Boolean Stack_is_full(struct Stack* stack);
 
 /**
  * Get the number of elements on the stack.

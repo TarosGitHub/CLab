@@ -63,9 +63,9 @@ namespace TestStack
 			elem_t memory[MEMORY_SIZE];
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
-			Stack_bool is_empty = Stack_is_empty(&target);
+			Boolean is_empty = Stack_is_empty(&target);
 
-			Assert::AreEqual<int>(STACK_TRUE, is_empty);
+			Assert::AreEqual<int>(TRUE, is_empty);
 		}
 
 		TEST_METHOD(stack_is_not_empty)
@@ -74,9 +74,9 @@ namespace TestStack
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 1U;
 
-			Stack_bool is_empty = Stack_is_empty(&target);
+			Boolean is_empty = Stack_is_empty(&target);
 
-			Assert::AreEqual<int>(STACK_FALSE, is_empty);
+			Assert::AreEqual<int>(FALSE, is_empty);
 		}
 	};
 
@@ -90,9 +90,9 @@ namespace TestStack
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 5U;
 
-			Stack_bool is_full = Stack_is_full(&target);
+			Boolean is_full = Stack_is_full(&target);
 
-			Assert::AreEqual<int>(STACK_TRUE, is_full);
+			Assert::AreEqual<int>(TRUE, is_full);
 		}
 
 		TEST_METHOD(stack_is_not_full)
@@ -100,9 +100,9 @@ namespace TestStack
 			elem_t memory[MEMORY_SIZE];
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
-			Stack_bool is_full = Stack_is_full(&target);
+			Boolean is_full = Stack_is_full(&target);
 
-			Assert::AreEqual<int>(STACK_FALSE, is_full);
+			Assert::AreEqual<int>(FALSE, is_full);
 		}
 	};
 
