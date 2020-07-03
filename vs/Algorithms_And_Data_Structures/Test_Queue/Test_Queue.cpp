@@ -57,9 +57,9 @@ namespace TestQueue
 			elem_t memory[MEMORY_SIZE];
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 
-			Queue_bool is_empty = Queue_is_empty(&target);
+			Boolean is_empty = Queue_is_empty(&target);
 
-			Assert::AreEqual<int>(QUEUE_TRUE, is_empty);
+			Assert::AreEqual<int>(TRUE, is_empty);
 		}
 
 		TEST_METHOD(queue_is_not_empty)
@@ -68,9 +68,9 @@ namespace TestQueue
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 			target.size = 1U;
 
-			Queue_bool is_empty = Queue_is_empty(&target);
+			Boolean is_empty = Queue_is_empty(&target);
 
-			Assert::AreEqual<int>(QUEUE_FALSE, is_empty);
+			Assert::AreEqual<int>(FALSE, is_empty);
 		}
 	};
 
@@ -84,9 +84,9 @@ namespace TestQueue
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 			target.size = 5U;
 
-			Queue_bool is_full = Queue_is_full(&target);
+			Boolean is_full = Queue_is_full(&target);
 
-			Assert::AreEqual<int>(QUEUE_TRUE, is_full);
+			Assert::AreEqual<int>(TRUE, is_full);
 		}
 
 		TEST_METHOD(queue_is_not_full)
@@ -94,9 +94,9 @@ namespace TestQueue
 			elem_t memory[MEMORY_SIZE];
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 
-			Queue_bool is_full = Queue_is_full(&target);
+			Boolean is_full = Queue_is_full(&target);
 
-			Assert::AreEqual<int>(QUEUE_FALSE, is_full);
+			Assert::AreEqual<int>(FALSE, is_full);
 		}
 	};
 

@@ -1,4 +1,3 @@
-#include <stddef.h>
 #include <string.h>
 #include "Queue.h"
 
@@ -13,14 +12,14 @@ void Queue_init(struct Queue* queue, unsigned int elem_size, void* memory, unsig
 	queue->size = 0U;
 }
 
-enum Queue_bool Queue_is_empty(struct Queue* queue)
+enum Boolean Queue_is_empty(struct Queue* queue)
 {
-	return (queue->size == 0U ? QUEUE_TRUE : QUEUE_FALSE);
+	return (queue->size == 0U ? TRUE : FALSE);
 }
 
-enum Queue_bool Queue_is_full(struct Queue* queue)
+enum Boolean Queue_is_full(struct Queue* queue)
 {
-	return (queue->size == queue->capacity ? QUEUE_TRUE : QUEUE_FALSE);
+	return (queue->size == queue->capacity ? TRUE : FALSE);
 }
 
 unsigned int Queue_size(struct Queue* queue)

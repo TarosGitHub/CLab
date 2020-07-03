@@ -1,13 +1,7 @@
 #if !defined(QUEUE_H)
 #define QUEUE_H
 
-/**
- * Boolean type.
- */
-enum Queue_bool {
-	QUEUE_FALSE, /**< False is zero. */
-	QUEUE_TRUE /**< True is not zero. */
-};
+#include "Common.h"
 
 /**
  * Queue processing status.
@@ -54,7 +48,7 @@ extern void Queue_init(struct Queue* queue, unsigned int elem_size, void* memory
  * @param queue The pointer to the queue.
  * @return Return true if the queue is empty, otherwise return false.
  */
-extern enum Queue_bool Queue_is_empty(struct Queue* queue);
+extern enum Boolean Queue_is_empty(struct Queue* queue);
 
 /**
  * Judge if the queue is full or not.
@@ -62,7 +56,7 @@ extern enum Queue_bool Queue_is_empty(struct Queue* queue);
  * @param queue The pointer to the queue.
  * @return Return true if the queue is full, otherwise return false.
  */
-extern enum Queue_bool Queue_is_full(struct Queue* queue);
+extern enum Boolean Queue_is_full(struct Queue* queue);
 
 /**
  * Get the number of elements on the queue.
