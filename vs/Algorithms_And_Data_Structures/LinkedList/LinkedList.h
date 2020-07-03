@@ -67,11 +67,13 @@ extern void LinkedList_begin(struct LinkedList* list, struct LinkedListIterator*
 extern enum LinkedListStatus LinkedList_insert(struct LinkedList* list, struct LinkedListIterator* iterator, void* value);
 
 /**
- * Remove the value from the last of the linked list.
- * This function do nothing if the linked list is empty.
+ * Remove the value after the cell pointed to by the iterator.
  * @see Test_LinkedList_remove
  * @param list The pointer to the linked list.
+ * @param iterator The pointer to the iterator.
+ * @param value The value to be removed(You can set NULL to this argument. In that case, the removed value is discarded).
+ * @return Return failure if the next cell doesn't exist and the linked list is empty, otherwise return success.
  */
-extern void LinkedList_remove(struct LinkedList* list);
+extern enum LinkedListStatus LinkedList_remove(struct LinkedList* list, struct LinkedListIterator* iterator, void* value);
 
 #endif /* LINKEDLIST_H */

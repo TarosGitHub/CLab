@@ -196,44 +196,104 @@ namespace TestLinkedList
 		}
 	};
 
-#if 0
 	TEST_CLASS(Test_LinkedList_remove)
 	{
 	public:
 
-		TEST_METHOD(a_cell_is_in_the_linked_list)
+		TEST_METHOD(there_is_a_cell_in_the_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
-			cell_t added_value1 = 1;
-			LinkedListStatus status1 = LinkedList_add(list, &added_value1);
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
+			value_t added_value = 1;
+			LinkedList_insert(list, &iterator, &added_value);
 
-			LinkedList_remove(list);
+			value_t removed_value = 0;
+			LinkedListStatus status = LinkedList_remove(list, &iterator, &removed_value);
 
-			Assert::AreNotEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)&list->head, (void*)list->tail);
+			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status);
+			Assert::AreEqual(added_value, removed_value);
+			Assert::AreEqual((void*)NULL, (void*)list->head->next);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
 		}
 
-		TEST_METHOD(two_cell_is_in_the_linked_list)
+		TEST_METHOD(remove_front_there_are_two_cell_in_the_linked_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
-			cell_t added_value1 = 1;
-			LinkedListStatus status1 = LinkedList_add(list, &added_value1);
-			cell_t added_value2 = 2;
-			LinkedListStatus status2 = LinkedList_add(list, &added_value2);
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
+			value_t added_value2 = 2;
+			LinkedList_insert(list, &iterator, &added_value2);
+			value_t added_value1 = 1;
+			LinkedList_insert(list, &iterator, &added_value1);
 
-			LinkedList_remove(list);
+			value_t removed_value = 0;
+			LinkedListStatus status = LinkedList_remove(list, &iterator, &removed_value);
 
-			Assert::AreNotEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)NULL, (void*)list->head.next->next);
-			Assert::AreEqual((void*)list->head.next, (void*)list->tail);
-			Assert::AreEqual(added_value1, *(cell_t*)list->head.next->value);
+			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status);
+			Assert::AreEqual(added_value1, removed_value);
+			Assert::AreEqual(added_value2, *(value_t*)list->head->next->value);
 			Assert::AreEqual(1U, list->size);
 
 			LinkedList_destroy(list);
 		}
+
+		TEST_METHOD(remove_back_there_are_two_cell_in_the_linked_list)
+		{
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
+			value_t added_value2 = 2;
+			LinkedList_insert(list, &iterator, &added_value2);
+			value_t added_value1 = 1;
+			LinkedList_insert(list, &iterator, &added_value1);
+
+			LinkedListIterator_next(&iterator);
+			value_t removed_value = 0;
+			LinkedListStatus status = LinkedList_remove(list, &iterator, &removed_value);
+
+			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status);
+			Assert::AreEqual(added_value2, removed_value);
+			Assert::AreEqual(added_value1, *(value_t*)list->head->next->value);
+			Assert::AreEqual(1U, list->size);
+
+			LinkedList_destroy(list);
+		}
+
+		TEST_METHOD(next_cell_does_not_exist)
+		{
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
+
+			value_t removed_value = 0;
+			LinkedListStatus status = LinkedList_remove(list, &iterator, &removed_value);
+
+			Assert::AreEqual<int>(LINKED_LIST_FAILURE, status);
+			Assert::AreEqual(0, removed_value);
+			Assert::AreEqual((void*)NULL, (void*)list->head->next);
+			Assert::AreEqual(0U, list->size);
+
+			LinkedList_destroy(list);
+		}
+
+		TEST_METHOD(removed_value_is_discarded)
+		{
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
+			value_t added_value = 1;
+			LinkedList_insert(list, &iterator, &added_value);
+
+			LinkedListStatus status = LinkedList_remove(list, &iterator, NULL);
+
+			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status);
+			Assert::AreEqual((void*)NULL, (void*)list->head->next);
+			Assert::AreEqual(0U, list->size);
+
+			LinkedList_destroy(list);
+		}
 	};
-#endif
 }

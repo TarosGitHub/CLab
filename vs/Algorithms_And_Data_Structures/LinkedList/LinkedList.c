@@ -70,9 +70,25 @@ enum LinkedListStatus LinkedList_insert(struct LinkedList* list, struct LinkedLi
 	return LINKED_LIST_SUCCESS;
 }
 
-#if 0
-void LinkedList_remove(struct LinkedList* list)
+enum LinkedListStatus LinkedList_remove(struct LinkedList* list, struct LinkedListIterator* iterator, void* value)
 {
-	//TODO
+	struct LinkedListCell* current_cell = LinkedListIterator_get_cell(iterator);
+	struct LinkedListCell* removed_cell = LinkedListCell_get_next(current_cell);
+
+	if (NULL == removed_cell) {
+		return LINKED_LIST_FAILURE;
+	}
+
+	struct LinkedListCell* next_cell = LinkedListCell_get_next(removed_cell);
+
+	LinkedListCell_set_next(current_cell, next_cell);
+	list->size--;
+
+	if (NULL != value) {
+		LinkedListCell_get(removed_cell, value);
+	}
+
+	LinkedListCell_destroy(removed_cell);
+
+	return LINKED_LIST_SUCCESS;
 }
-#endif
