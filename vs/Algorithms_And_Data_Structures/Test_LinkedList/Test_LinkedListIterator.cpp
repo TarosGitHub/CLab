@@ -39,6 +39,23 @@ namespace TestLinkedListIterator
 		}
 	};
 
+	TEST_CLASS(Test_LinkedListIterator_get_cell)
+	{
+	public:
+
+		value_t value = 1;
+		LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
+
+		TEST_METHOD(normal)
+		{
+			LinkedListIterator target = LinkedListIterator_new(cell);
+
+			LinkedListCell* getted_cell = LinkedListIterator_get_cell(&target);
+
+			Assert::AreEqual((void*)cell, (void*)getted_cell);
+		}
+	};
+
 	TEST_CLASS(Test_LinkedListIterator_has_next)
 	{
 	public:

@@ -28,6 +28,14 @@ struct LinkedListIterator {
 extern void LinkedListIterator_init(struct LinkedListIterator* iterator, struct LinkedListCell* current);
 
 /**
+ * Get the cell.
+ * @see Test_LinkedListIterator_get_cell
+ * @param iterator The pointer to the linked list iterator.
+ * @return Return the cell object.
+ */
+extern struct LinkedListCell* LinkedListIterator_get_cell(struct LinkedListIterator* iterator);
+
+/**
  * Judge if the iterator has the next pointer or not.
  * @see Test_LinkedListIterator_has_next
  * @param iterator The pointer to the linked list iterator.

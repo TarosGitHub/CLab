@@ -6,6 +6,11 @@ void LinkedListIterator_init(struct LinkedListIterator* iterator, struct LinkedL
 	iterator->current = current;
 }
 
+struct LinkedListCell* LinkedListIterator_get_cell(struct LinkedListIterator* iterator)
+{
+	return iterator->current;
+}
+
 enum Boolean LinkedListIterator_has_next(struct LinkedListIterator* iterator)
 {
 	return LinkedListCell_has_next(iterator->current);
