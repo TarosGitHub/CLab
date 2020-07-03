@@ -191,6 +191,8 @@ namespace TestLinkedList
 			LinkedListStatus status = LinkedList_insert(list, &iterator, &added_value);
 
 			Assert::AreEqual<int>(LINKED_LIST_FAILURE, status);
+
+			LinkedList_destroy(list);
 		}
 	};
 
