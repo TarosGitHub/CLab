@@ -52,24 +52,25 @@ void LinkedList_begin(struct LinkedList* list, struct LinkedListIterator* iterat
 	LinkedListIterator_init(iterator, list->head);
 }
 
-#if 0
-enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value)
+enum LinkedListStatus LinkedList_insert(struct LinkedList* list, struct LinkedListIterator* iterator, void* value)
 {
-	struct LinkedListCell* cell;
+	struct LinkedListCell* new_cell = LinkedListCell_create(NULL, value, list->value_type_size);
 
-	cell = LinkedListCell_create(NULL, value, list->value_type_size);
-
-	if (NULL == cell) {
+	if (NULL == new_cell) {
 		return LINKED_LIST_FAILURE;
 	}
 
-	list->tail->next = cell;
-	list->tail = cell;
+	struct LinkedListCell* current_cell = LinkedListIterator_get_cell(iterator);
+	struct LinkedListCell* next_cell = LinkedListCell_get_next(current_cell);
+
+	LinkedListCell_set_next(new_cell, next_cell);
+	LinkedListCell_set_next(current_cell, new_cell);
 	list->size++;
 
 	return LINKED_LIST_SUCCESS;
 }
 
+#if 0
 void LinkedList_remove(struct LinkedList* list)
 {
 	//TODO

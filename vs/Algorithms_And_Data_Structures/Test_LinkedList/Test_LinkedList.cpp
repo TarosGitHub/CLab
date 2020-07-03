@@ -7,7 +7,7 @@ extern "C" {
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-typedef int cell_t;
+typedef int value_t;
 
 namespace TestLinkedList
 {
@@ -17,11 +17,11 @@ namespace TestLinkedList
 		
 		TEST_METHOD(normal)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
 
 			Assert::AreNotEqual((void*)NULL, (void*)list);
 			Assert::AreNotEqual((void*)NULL, (void*)list->head);
-			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
+			Assert::AreEqual(sizeof(value_t), list->value_type_size);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
@@ -32,7 +32,7 @@ namespace TestLinkedList
 			MockRepository mocks;
 			mocks.ExpectCallFunc(LinkedListCell_create).Return(NULL);
 
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
 
 			Assert::AreEqual((void*)NULL, (void*)list);
 		}
@@ -44,7 +44,7 @@ namespace TestLinkedList
 
 		TEST_METHOD(there_is_a_cell_in_the_linked_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
 			LinkedListCell* cell = LinkedListCell_create(NULL, NULL, 0U);
 			LinkedListCell_set_next(list->head, cell);
 			list->size = 1U;
@@ -53,7 +53,7 @@ namespace TestLinkedList
 
 			Assert::AreNotEqual((void*)NULL, (void*)list);
 			Assert::AreNotEqual((void*)NULL, (void*)list->head);
-			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
+			Assert::AreEqual(sizeof(value_t), list->value_type_size);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
@@ -61,7 +61,7 @@ namespace TestLinkedList
 		
 		TEST_METHOD(there_are_two_cell_in_the_linked_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
 			LinkedListCell* cell1 = LinkedListCell_create(NULL, NULL, 0U);
 			LinkedListCell* cell2 = LinkedListCell_create(NULL, NULL, 0U);
 			LinkedListCell_set_next(list->head, cell1);
@@ -72,7 +72,7 @@ namespace TestLinkedList
 
 			Assert::AreNotEqual((void*)NULL, (void*)list);
 			Assert::AreNotEqual((void*)NULL, (void*)list->head);
-			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
+			Assert::AreEqual(sizeof(value_t), list->value_type_size);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
@@ -80,13 +80,13 @@ namespace TestLinkedList
 
 		TEST_METHOD(there_is_no_cell_in_the_linked_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
 
 			LinkedList_delete_all(list);
 
 			Assert::AreNotEqual((void*)NULL, (void*)list);
 			Assert::AreNotEqual((void*)NULL, (void*)list->head);
-			Assert::AreEqual(sizeof(cell_t), list->value_type_size);
+			Assert::AreEqual(sizeof(value_t), list->value_type_size);
 			Assert::AreEqual(0U, list->size);
 
 			LinkedList_destroy(list);
@@ -99,7 +99,7 @@ namespace TestLinkedList
 
 		TEST_METHOD(normal)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
 			LinkedListIterator iterator;
 
 			LinkedList_begin(list, &iterator);
@@ -110,64 +110,91 @@ namespace TestLinkedList
 		}
 	};
 
-#if 0
-	TEST_CLASS(Test_LinkedList_add)
+	TEST_CLASS(Test_LinkedList_insert)
 	{
 	public:
 
-		TEST_METHOD(add_a_value_to_the_linked_list)
+		TEST_METHOD(insert_a_value_to_the_empty_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
 
-			cell_t added_value = 1;
-			LinkedListStatus status = LinkedList_add(list, &added_value);
+			value_t added_value = 1;
+			LinkedListStatus status = LinkedList_insert(list, &iterator, &added_value);
 
 			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status);
-			Assert::AreNotEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)list->head.next, (void*)list->tail);
-			Assert::AreEqual(added_value, *(cell_t*)list->head.next->value);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head->next);
+			Assert::AreEqual(added_value, *(value_t*)list->head->next->value);
 			Assert::AreEqual(1U, list->size);
 
 			LinkedList_destroy(list);
 		}
 
-		TEST_METHOD(add_two_values_to_the_linked_list)
+		TEST_METHOD(insert_the_second_value_to_the_front_of_the_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
 
-			cell_t added_value1 = 1;
-			LinkedListStatus status1 = LinkedList_add(list, &added_value1);
-			cell_t added_value2 = 2;
-			LinkedListStatus status2 = LinkedList_add(list, &added_value2);
+			value_t added_value1 = 1;
+			LinkedListStatus status1 = LinkedList_insert(list, &iterator, &added_value1);
+			value_t added_value2 = 2;
+			LinkedListStatus status2 = LinkedList_insert(list, &iterator, &added_value2);
 
 			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status1);
 			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status2);
-			Assert::AreNotEqual((void*)NULL, (void*)list->head.next);
-			Assert::AreEqual((void*)list->head.next->next, (void*)list->tail);
-			Assert::AreEqual(added_value1, *(cell_t*)list->head.next->value);
-			Assert::AreEqual(added_value2, *(cell_t*)list->head.next->next->value);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head->next);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head->next->next);
+			Assert::AreNotEqual((void*)list->head->next, (void*)list->head->next->next);
+			Assert::AreEqual(added_value2, *(value_t*)list->head->next->value);
+			Assert::AreEqual(added_value1, *(value_t*)list->head->next->next->value);
 			Assert::AreEqual(2U, list->size);
 
 			LinkedList_destroy(list);
 		}
 
-		// TODO: 追加に失敗した場合のテストができていない -> mallocをMockで置き換えられない
-		TEST_METHOD(adding_fails)
+		TEST_METHOD(insert_the_second_value_to_the_back_of_the_list)
 		{
-			LinkedList* list = LinkedList_create(sizeof(cell_t));
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
+
+			value_t added_value1 = 1;
+			LinkedListStatus status1 = LinkedList_insert(list, &iterator, &added_value1);
+			LinkedListIterator_next(&iterator);
+			value_t added_value2 = 2;
+			LinkedListStatus status2 = LinkedList_insert(list, &iterator, &added_value2);
+
+			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status1);
+			Assert::AreEqual<int>(LINKED_LIST_SUCCESS, status2);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head->next);
+			Assert::AreNotEqual((void*)NULL, (void*)list->head->next->next);
+			Assert::AreNotEqual((void*)list->head->next, (void*)list->head->next->next);
+			Assert::AreEqual(added_value1, *(value_t*)list->head->next->value);
+			Assert::AreEqual(added_value2, *(value_t*)list->head->next->next->value);
+			Assert::AreEqual(2U, list->size);
+
+			LinkedList_destroy(list);
+		}
+
+		TEST_METHOD(memory_allocation_error)
+		{
+			LinkedList* list = LinkedList_create(sizeof(value_t));
+			LinkedListIterator iterator;
+			LinkedList_begin(list, &iterator);
 
 			MockRepository mocks;
 			mocks.ExpectCallFunc(LinkedListCell_create).Return(NULL);
 
-			cell_t added_value = 1;
-			LinkedListStatus status = LinkedList_add(list, &added_value);
+			value_t added_value = 1;
+			LinkedListStatus status = LinkedList_insert(list, &iterator, &added_value);
 
 			Assert::AreEqual<int>(LINKED_LIST_FAILURE, status);
-
-			LinkedList_destroy(list);
 		}
 	};
 
+#if 0
 	TEST_CLASS(Test_LinkedList_remove)
 	{
 	public:

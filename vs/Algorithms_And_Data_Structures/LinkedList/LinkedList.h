@@ -57,13 +57,14 @@ extern void LinkedList_delete_all(struct LinkedList* list);
 extern void LinkedList_begin(struct LinkedList* list, struct LinkedListIterator* iterator);
 
 /**
- * Add the value to the last of the linked list.
- * @see Test_LinkedList_add
+ * Insert the value after the cell pointed to by the iterator.
+ * @see Test_LinkedList_insert
  * @param list The pointer to the linked list.
- * @param value The value to be added(You must not set NULL to this argument).
+ * @param iterator The pointer to the iterator.
+ * @param value The value to be inserted(You must not set NULL to this argument).
  * @return Return failure if memory allocation fails, otherwise return success.
  */
-extern enum LinkedListStatus LinkedList_add(struct LinkedList* list, void* value);
+extern enum LinkedListStatus LinkedList_insert(struct LinkedList* list, struct LinkedListIterator* iterator, void* value);
 
 /**
  * Remove the value from the last of the linked list.
