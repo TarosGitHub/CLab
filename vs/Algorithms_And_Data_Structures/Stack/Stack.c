@@ -26,7 +26,7 @@ unsigned int Stack_size(struct Stack* stack)
 	return stack->pointer;
 }
 
-enum Stack_status Stack_push(struct Stack* stack, const void* elem)
+enum StackStatus Stack_push(struct Stack* stack, const void* elem)
 {
 	if (Stack_is_full(stack)) {
 		return STACK_FAILURE;
@@ -38,7 +38,7 @@ enum Stack_status Stack_push(struct Stack* stack, const void* elem)
 	return STACK_SUCCESS;
 }
 
-enum Stack_status Stack_pop(struct Stack* stack, void* elem)
+enum StackStatus Stack_pop(struct Stack* stack, void* elem)
 {
 	if (Stack_is_empty(stack)) {
 		return STACK_FAILURE;

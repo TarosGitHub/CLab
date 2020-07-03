@@ -132,7 +132,7 @@ namespace TestStack
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t pushed_elem = 1;
-			Stack_status status = Stack_push(&target, &pushed_elem);
+			StackStatus status = Stack_push(&target, &pushed_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			elem_t expected_memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
@@ -146,15 +146,15 @@ namespace TestStack
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t pushed_elem = 1;
-			Stack_status status1 = Stack_push(&target, &pushed_elem);
+			StackStatus status1 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 2;
-			Stack_status status2 = Stack_push(&target, &pushed_elem);
+			StackStatus status2 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 3;
-			Stack_status status3 = Stack_push(&target, &pushed_elem);
+			StackStatus status3 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 4;
-			Stack_status status4 = Stack_push(&target, &pushed_elem);
+			StackStatus status4 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 5;
-			Stack_status status5 = Stack_push(&target, &pushed_elem);
+			StackStatus status5 = Stack_push(&target, &pushed_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status1);
 			Assert::AreEqual<int>(STACK_SUCCESS, status2);
@@ -172,17 +172,17 @@ namespace TestStack
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t pushed_elem = 1;
-			Stack_status status1 = Stack_push(&target, &pushed_elem);
+			StackStatus status1 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 2;
-			Stack_status status2 = Stack_push(&target, &pushed_elem);
+			StackStatus status2 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 3;
-			Stack_status status3 = Stack_push(&target, &pushed_elem);
+			StackStatus status3 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 4;
-			Stack_status status4 = Stack_push(&target, &pushed_elem);
+			StackStatus status4 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 5;
-			Stack_status status5 = Stack_push(&target, &pushed_elem);
+			StackStatus status5 = Stack_push(&target, &pushed_elem);
 			pushed_elem = 6;
-			Stack_status status6 = Stack_push(&target, &pushed_elem);
+			StackStatus status6 = Stack_push(&target, &pushed_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status1);
 			Assert::AreEqual<int>(STACK_SUCCESS, status2);
@@ -201,7 +201,7 @@ namespace TestStack
 			Stack target = Stack_new(AnyType, memory, MEMORY_SIZE);
 
 			AnyType pushed_elem = { 'a', 1 };
-			Stack_status status = Stack_push(&target, &pushed_elem);
+			StackStatus status = Stack_push(&target, &pushed_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			AnyType expected_memory[MEMORY_SIZE] = { {'a', 1}, {'\0', 0}, {'\0', 0}, {'\0', 0}, {'\0', 0} };
@@ -221,7 +221,7 @@ namespace TestStack
 			target.pointer = 1U;
 
 			elem_t poped_elem = 0;
-			Stack_status status = Stack_pop(&target, &poped_elem);
+			StackStatus status = Stack_pop(&target, &poped_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			Assert::AreEqual(1, poped_elem);
@@ -237,15 +237,15 @@ namespace TestStack
 			target.pointer = 5U;
 
 			elem_t poped_elem5 = 0;
-			Stack_status status5 = Stack_pop(&target, &poped_elem5);
+			StackStatus status5 = Stack_pop(&target, &poped_elem5);
 			elem_t poped_elem4 = 0;
-			Stack_status status4 = Stack_pop(&target, &poped_elem4);
+			StackStatus status4 = Stack_pop(&target, &poped_elem4);
 			elem_t poped_elem3 = 0;
-			Stack_status status3 = Stack_pop(&target, &poped_elem3);
+			StackStatus status3 = Stack_pop(&target, &poped_elem3);
 			elem_t poped_elem2 = 0;
-			Stack_status status2 = Stack_pop(&target, &poped_elem2);
+			StackStatus status2 = Stack_pop(&target, &poped_elem2);
 			elem_t poped_elem1 = 0;
-			Stack_status status1 = Stack_pop(&target, &poped_elem1);
+			StackStatus status1 = Stack_pop(&target, &poped_elem1);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status5);
 			Assert::AreEqual<int>(STACK_SUCCESS, status4);
@@ -269,17 +269,17 @@ namespace TestStack
 			target.pointer = 5U;
 
 			elem_t poped_elem5 = 0;
-			Stack_status status5 = Stack_pop(&target, &poped_elem5);
+			StackStatus status5 = Stack_pop(&target, &poped_elem5);
 			elem_t poped_elem4 = 0;
-			Stack_status status4 = Stack_pop(&target, &poped_elem4);
+			StackStatus status4 = Stack_pop(&target, &poped_elem4);
 			elem_t poped_elem3 = 0;
-			Stack_status status3 = Stack_pop(&target, &poped_elem3);
+			StackStatus status3 = Stack_pop(&target, &poped_elem3);
 			elem_t poped_elem2 = 0;
-			Stack_status status2 = Stack_pop(&target, &poped_elem2);
+			StackStatus status2 = Stack_pop(&target, &poped_elem2);
 			elem_t poped_elem1 = 0;
-			Stack_status status1 = Stack_pop(&target, &poped_elem1);
+			StackStatus status1 = Stack_pop(&target, &poped_elem1);
 			elem_t poped_elem = 0;
-			Stack_status status = Stack_pop(&target, &poped_elem);
+			StackStatus status = Stack_pop(&target, &poped_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status5);
 			Assert::AreEqual<int>(STACK_SUCCESS, status4);
@@ -304,7 +304,7 @@ namespace TestStack
 			Stack target = Stack_new(elem_t, memory, MEMORY_SIZE);
 			target.pointer = 1U;
 
-			Stack_status status = Stack_pop(&target, NULL);
+			StackStatus status = Stack_pop(&target, NULL);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			elem_t expected_memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
@@ -319,7 +319,7 @@ namespace TestStack
 			target.pointer = 1U;
 
 			AnyType poped_elem;
-			Stack_status status = Stack_pop(&target, &poped_elem);
+			StackStatus status = Stack_pop(&target, &poped_elem);
 
 			Assert::AreEqual<int>(STACK_SUCCESS, status);
 			AnyType expected_elem = { 'a', 1 };

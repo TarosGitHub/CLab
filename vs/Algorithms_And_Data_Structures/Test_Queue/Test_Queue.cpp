@@ -126,7 +126,7 @@ namespace TestQueue
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 			target.size = 1U;
 
-			Queue_status status = Queue_dequeue(&target, NULL);
+			QueueStatus status = Queue_dequeue(&target, NULL);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status);
 			elem_t expected_memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
@@ -146,7 +146,7 @@ namespace TestQueue
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t enqueued_elem = 1;
-			Queue_status status = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status = Queue_enqueue(&target, &enqueued_elem);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status);
 			elem_t expected_memory[MEMORY_SIZE] = { 1, 0, 0, 0, 0 };
@@ -161,15 +161,15 @@ namespace TestQueue
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t enqueued_elem = 1;
-			Queue_status status1 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status1 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 2;
-			Queue_status status2 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status2 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 3;
-			Queue_status status3 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status3 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 4;
-			Queue_status status4 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status4 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 5;
-			Queue_status status5 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status5 = Queue_enqueue(&target, &enqueued_elem);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -188,17 +188,17 @@ namespace TestQueue
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t enqueued_elem = 1;
-			Queue_status status1 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status1 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 2;
-			Queue_status status2 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status2 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 3;
-			Queue_status status3 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status3 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 4;
-			Queue_status status4 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status4 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 5;
-			Queue_status status5 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status5 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 6;
-			Queue_status status6 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status6 = Queue_enqueue(&target, &enqueued_elem);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -219,7 +219,7 @@ namespace TestQueue
 			target.size = 1U;
 
 			elem_t dequeued_elem = 0;
-			Queue_status status = Queue_dequeue(&target, &dequeued_elem);
+			QueueStatus status = Queue_dequeue(&target, &dequeued_elem);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status);
 			Assert::AreEqual(1, dequeued_elem);
@@ -236,15 +236,15 @@ namespace TestQueue
 			target.size = 5U;
 
 			elem_t dequeued_elem1 = 0;
-			Queue_status status1 = Queue_dequeue(&target, &dequeued_elem1);
+			QueueStatus status1 = Queue_dequeue(&target, &dequeued_elem1);
 			elem_t dequeued_elem2 = 0;
-			Queue_status status2 = Queue_dequeue(&target, &dequeued_elem2);
+			QueueStatus status2 = Queue_dequeue(&target, &dequeued_elem2);
 			elem_t dequeued_elem3 = 0;
-			Queue_status status3 = Queue_dequeue(&target, &dequeued_elem3);
+			QueueStatus status3 = Queue_dequeue(&target, &dequeued_elem3);
 			elem_t dequeued_elem4 = 0;
-			Queue_status status4 = Queue_dequeue(&target, &dequeued_elem4);
+			QueueStatus status4 = Queue_dequeue(&target, &dequeued_elem4);
 			elem_t dequeued_elem5 = 0;
-			Queue_status status5 = Queue_dequeue(&target, &dequeued_elem5);
+			QueueStatus status5 = Queue_dequeue(&target, &dequeued_elem5);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -269,17 +269,17 @@ namespace TestQueue
 			target.size = 5U;
 
 			elem_t dequeued_elem1 = 0;
-			Queue_status status1 = Queue_dequeue(&target, &dequeued_elem1);
+			QueueStatus status1 = Queue_dequeue(&target, &dequeued_elem1);
 			elem_t dequeued_elem2 = 0;
-			Queue_status status2 = Queue_dequeue(&target, &dequeued_elem2);
+			QueueStatus status2 = Queue_dequeue(&target, &dequeued_elem2);
 			elem_t dequeued_elem3 = 0;
-			Queue_status status3 = Queue_dequeue(&target, &dequeued_elem3);
+			QueueStatus status3 = Queue_dequeue(&target, &dequeued_elem3);
 			elem_t dequeued_elem4 = 0;
-			Queue_status status4 = Queue_dequeue(&target, &dequeued_elem4);
+			QueueStatus status4 = Queue_dequeue(&target, &dequeued_elem4);
 			elem_t dequeued_elem5 = 0;
-			Queue_status status5 = Queue_dequeue(&target, &dequeued_elem5);
+			QueueStatus status5 = Queue_dequeue(&target, &dequeued_elem5);
 			elem_t dequeued_elem6 = 0;
-			Queue_status status6 = Queue_dequeue(&target, &dequeued_elem6);
+			QueueStatus status6 = Queue_dequeue(&target, &dequeued_elem6);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -307,15 +307,15 @@ namespace TestQueue
 			target.size = 0U;
 
 			elem_t enqueued_elem = 1;
-			Queue_status status1 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status1 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 2;
-			Queue_status status2 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status2 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 3;
-			Queue_status status3 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status3 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 4;
-			Queue_status status4 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status4 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 5;
-			Queue_status status5 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status5 = Queue_enqueue(&target, &enqueued_elem);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -336,17 +336,17 @@ namespace TestQueue
 			target.size = 0U;
 
 			elem_t enqueued_elem = 1;
-			Queue_status status1 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status1 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 2;
-			Queue_status status2 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status2 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 3;
-			Queue_status status3 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status3 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 4;
-			Queue_status status4 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status4 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 5;
-			Queue_status status5 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status5 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 6;
-			Queue_status status6 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status6 = Queue_enqueue(&target, &enqueued_elem);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -368,15 +368,15 @@ namespace TestQueue
 			target.size = 5U;
 
 			elem_t dequeued_elem1 = 0;
-			Queue_status status1 = Queue_dequeue(&target, &dequeued_elem1);
+			QueueStatus status1 = Queue_dequeue(&target, &dequeued_elem1);
 			elem_t dequeued_elem2 = 0;
-			Queue_status status2 = Queue_dequeue(&target, &dequeued_elem2);
+			QueueStatus status2 = Queue_dequeue(&target, &dequeued_elem2);
 			elem_t dequeued_elem3 = 0;
-			Queue_status status3 = Queue_dequeue(&target, &dequeued_elem3);
+			QueueStatus status3 = Queue_dequeue(&target, &dequeued_elem3);
 			elem_t dequeued_elem4 = 0;
-			Queue_status status4 = Queue_dequeue(&target, &dequeued_elem4);
+			QueueStatus status4 = Queue_dequeue(&target, &dequeued_elem4);
 			elem_t dequeued_elem5 = 0;
-			Queue_status status5 = Queue_dequeue(&target, &dequeued_elem5);
+			QueueStatus status5 = Queue_dequeue(&target, &dequeued_elem5);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -402,17 +402,17 @@ namespace TestQueue
 			target.size = 5U;
 
 			elem_t dequeued_elem1 = 0;
-			Queue_status status1 = Queue_dequeue(&target, &dequeued_elem1);
+			QueueStatus status1 = Queue_dequeue(&target, &dequeued_elem1);
 			elem_t dequeued_elem2 = 0;
-			Queue_status status2 = Queue_dequeue(&target, &dequeued_elem2);
+			QueueStatus status2 = Queue_dequeue(&target, &dequeued_elem2);
 			elem_t dequeued_elem3 = 0;
-			Queue_status status3 = Queue_dequeue(&target, &dequeued_elem3);
+			QueueStatus status3 = Queue_dequeue(&target, &dequeued_elem3);
 			elem_t dequeued_elem4 = 0;
-			Queue_status status4 = Queue_dequeue(&target, &dequeued_elem4);
+			QueueStatus status4 = Queue_dequeue(&target, &dequeued_elem4);
 			elem_t dequeued_elem5 = 0;
-			Queue_status status5 = Queue_dequeue(&target, &dequeued_elem5);
+			QueueStatus status5 = Queue_dequeue(&target, &dequeued_elem5);
 			elem_t dequeued_elem6 = 0;
-			Queue_status status6 = Queue_dequeue(&target, &dequeued_elem6);
+			QueueStatus status6 = Queue_dequeue(&target, &dequeued_elem6);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);
@@ -441,31 +441,31 @@ namespace TestQueue
 			Queue target = Queue_new(elem_t, memory, MEMORY_SIZE);
 
 			elem_t enqueued_elem = 1;
-			Queue_status status1 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status1 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 2;
-			Queue_status status2 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status2 = Queue_enqueue(&target, &enqueued_elem);
 			elem_t dequeued_elem1 = 0;
-			Queue_status status3 = Queue_dequeue(&target, &dequeued_elem1);
+			QueueStatus status3 = Queue_dequeue(&target, &dequeued_elem1);
 			enqueued_elem = 3;
-			Queue_status status4 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status4 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 4;
-			Queue_status status5 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status5 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 5;
-			Queue_status status6 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status6 = Queue_enqueue(&target, &enqueued_elem);
 			elem_t dequeued_elem2 = 0;
-			Queue_status status7 = Queue_dequeue(&target, &dequeued_elem2);
+			QueueStatus status7 = Queue_dequeue(&target, &dequeued_elem2);
 			elem_t dequeued_elem3 = 0;
-			Queue_status status8 = Queue_dequeue(&target, &dequeued_elem3);
+			QueueStatus status8 = Queue_dequeue(&target, &dequeued_elem3);
 			elem_t dequeued_elem4 = 0;
-			Queue_status status9 = Queue_dequeue(&target, &dequeued_elem4);
+			QueueStatus status9 = Queue_dequeue(&target, &dequeued_elem4);
 			elem_t dequeued_elem5 = 0;
-			Queue_status status10 = Queue_dequeue(&target, &dequeued_elem5);
+			QueueStatus status10 = Queue_dequeue(&target, &dequeued_elem5);
 			enqueued_elem = 6;
-			Queue_status status11 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status11 = Queue_enqueue(&target, &enqueued_elem);
 			enqueued_elem = 7;
-			Queue_status status12 = Queue_enqueue(&target, &enqueued_elem);
+			QueueStatus status12 = Queue_enqueue(&target, &enqueued_elem);
 			elem_t dequeued_elem6 = 0;
-			Queue_status status13 = Queue_dequeue(&target, &dequeued_elem6);
+			QueueStatus status13 = Queue_dequeue(&target, &dequeued_elem6);
 
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status1);
 			Assert::AreEqual<int>(QUEUE_SUCCESS, status2);

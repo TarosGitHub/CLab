@@ -27,7 +27,7 @@ unsigned int Queue_size(struct Queue* queue)
 	return queue->size;
 }
 
-enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem)
+enum QueueStatus Queue_enqueue(struct Queue* queue, const void* elem)
 {
 	if (Queue_is_full(queue)) {
 		return QUEUE_FAILURE;
@@ -39,7 +39,7 @@ enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem)
 	return QUEUE_SUCCESS;
 }
 
-enum Queue_status Queue_dequeue(struct Queue* queue, void* elem)
+enum QueueStatus Queue_dequeue(struct Queue* queue, void* elem)
 {
 	if (Queue_is_empty(queue)) {
 		return QUEUE_FAILURE;

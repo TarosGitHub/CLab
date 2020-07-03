@@ -6,7 +6,7 @@
 /**
  * Queue processing status.
  */
-enum Queue_status {
+enum QueueStatus {
 	QUEUE_SUCCESS, /**< Queue processing success. */
 	QUEUE_FAILURE /**< Queue processing failure. */
 };
@@ -25,12 +25,12 @@ struct Queue {
 /**
  * Create a queue.
  * @see Test_Queue_new
- * @param elem_size The size of an element.
+ * @param elem_type The size of the element type.
  * @param memory The memory area of the queue.
  * @param capacity The maximum number of elements on the queue.
  * @return Return a queue object.
  */
-#define Queue_new(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U, 0U}
+#define Queue_new(elem_type, memory, capacity) {sizeof(elem_type), (char*)(memory), (capacity), 0U, 0U}
 
  /**
   * Initialize the queue.
@@ -73,7 +73,7 @@ extern unsigned int Queue_size(struct Queue* queue);
  * @param elem An element that is enqueued to the queue(You must not set NULL to this argument).
  * @return Return failure if the queue is full, otherwise return success.
  */
-extern enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem);
+extern enum QueueStatus Queue_enqueue(struct Queue* queue, const void* elem);
 
 /**
  * Dequeue an element from the queue.
@@ -83,6 +83,6 @@ extern enum Queue_status Queue_enqueue(struct Queue* queue, const void* elem);
  * @param elem An element that is dequeued from the queue(You can set NULL to this argument. In that case, the dequeued value is discarded).
  * @return Return failure if the queue is empty, otherwise return success.
  */
-extern enum Queue_status Queue_dequeue(struct Queue* queue, void* elem);
+extern enum QueueStatus Queue_dequeue(struct Queue* queue, void* elem);
 
 #endif /* QUEUE_H */

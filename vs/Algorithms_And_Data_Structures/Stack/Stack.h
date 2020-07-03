@@ -6,7 +6,7 @@
 /**
  * Stack processing status.
  */
-enum Stack_status {
+enum StackStatus {
 	STACK_SUCCESS, /**< Stack processing success. */
 	STACK_FAILURE /**< Stack processing failure. */
 };
@@ -24,12 +24,12 @@ struct Stack {
 /**
  * Create a stack.
  * @see Test_Stack_new
- * @param elem_size The size of an element.
+ * @param elem_type The size of the element type.
  * @param memory The memory area of the stack.
  * @param capacity The maximum number of elements on the stack.
  * @return Return a stack object.
  */
-#define Stack_new(elem_size, memory, capacity) {sizeof(elem_size), (char*)(memory), (capacity), 0U}
+#define Stack_new(elem_type, memory, capacity) {sizeof(elem_type), (char*)(memory), (capacity), 0U}
 
 /**
  * Initialize the stack.
@@ -72,7 +72,7 @@ extern unsigned int Stack_size(struct Stack* stack);
  * @param elem An element that is pushed to the stack(You must not set NULL to this argument).
  * @return Return failure if the stack is full, otherwise return success.
  */
-extern enum Stack_status Stack_push(struct Stack* stack, const void* elem);
+extern enum StackStatus Stack_push(struct Stack* stack, const void* elem);
 
 /**
  * Pop an element from the stack.
@@ -81,7 +81,7 @@ extern enum Stack_status Stack_push(struct Stack* stack, const void* elem);
  * @param elem An element that is popped from the stack(You can set NULL to this argument. In that case, the popped value is discarded).
  * @return Return failure if the stack is empty, otherwise return success.
  */
-extern enum Stack_status Stack_pop(struct Stack* stack, void* elem);
+extern enum StackStatus Stack_pop(struct Stack* stack, void* elem);
 
 /**
  * Copy a stack.
