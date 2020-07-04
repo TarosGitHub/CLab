@@ -1,8 +1,6 @@
 #include <string.h>
 #include "Stack.h"
 
-#define min(x, y) ((x) < (y) ? (x) : (y))
-
 void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory, unsigned int capacity)
 {
 	stack->elem_size = elem_size;
