@@ -13,8 +13,9 @@ struct LinkedListCell {
 };
 
 /**
- * Create a linked list cell.
+ * Creates a linked list cell.
  * You must destroy the object created by this function with the destroy function.
+ *
  * @see LinkedListCell_destroy
  * @see Test_LinkedListCell_create_destroy
  * @param next The pointer to the next cell element.
@@ -25,8 +26,9 @@ struct LinkedListCell {
 extern struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next, void* value, unsigned int value_type_size);
 
 /**
- * Destroy the linked list cell.
+ * Destroys the linked list cell.
  * This function destroy the object created by the create function.
+ *
  * @see LinkedListCell_create
  * @see Test_LinkedListCell_create_destroy
  * @param cell The pointer to the linked list cell.
@@ -34,7 +36,8 @@ extern struct LinkedListCell* LinkedListCell_create(struct LinkedListCell* next,
 extern void LinkedListCell_destroy(struct LinkedListCell* cell);
 
 /**
- * Judge if the cell has the next pointer or not.
+ * Judges whether the cell has the next pointer.
+ *
  * @see Test_LinkedListCell_has_next
  * @param cell The pointer to the linked list cell.
  * @return Return true if the cell has the next pointer, otherwise return false.
@@ -42,7 +45,8 @@ extern void LinkedListCell_destroy(struct LinkedListCell* cell);
 extern enum Boolean LinkedListCell_has_next(struct LinkedListCell* cell);
 
 /**
- * Get the pointer to the next cell element.
+ * Gets the pointer to the next cell element.
+ *
  * @see Test_LinkedListCell_get_next
  * @param cell The pointer to the linked list cell.
  * @return Return the pointer to the next cell element. If the cell doesn't have it, return NULL.
@@ -50,7 +54,8 @@ extern enum Boolean LinkedListCell_has_next(struct LinkedListCell* cell);
 extern struct LinkedListCell* LinkedListCell_get_next(struct LinkedListCell* cell);
 
 /**
- * Set the pointer to the next cell element.
+ * Sets the pointer to the next cell element.
+ *
  * @see Test_LinkedListCell_set_next
  * @param cell The pointer to the linked list cell.
  * @param next The pointer to the next cell element.
@@ -58,7 +63,8 @@ extern struct LinkedListCell* LinkedListCell_get_next(struct LinkedListCell* cel
 extern void LinkedListCell_set_next(struct LinkedListCell* cell, struct LinkedListCell* next);
 
 /**
- * Get the value.
+ * Gets the value.
+ *
  * @see Test_LinkedListCell_get
  * @param cell The pointer to the linked list cell.
  * @param value The getted value. The size of the value type must match the size set at initialization.
@@ -67,7 +73,8 @@ extern void LinkedListCell_set_next(struct LinkedListCell* cell, struct LinkedLi
 extern void LinkedListCell_get(struct LinkedListCell* cell, void* value);
 
 /**
- * Set the value.
+ * Sets the value.
+ *
  * @see Test_LinkedListCell_set
  * @param cell The pointer to the linked list cell.
  * @param value The value to set. The size of the value type must match the size set at initialization.
@@ -75,4 +82,4 @@ extern void LinkedListCell_get(struct LinkedListCell* cell, void* value);
  */
 extern void LinkedListCell_set(struct LinkedListCell* cell, void* value);
 
-#endif /* LINKEDLISTCELL_H */
+#endif

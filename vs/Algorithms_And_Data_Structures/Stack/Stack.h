@@ -22,7 +22,8 @@ struct Stack {
 };
 
 /**
- * Create a stack.
+ * Creates a stack.
+ *
  * @see Test_Stack_new
  * @param elem_type The type of the element.
  * @param memory The memory area of the stack.
@@ -32,7 +33,8 @@ struct Stack {
 #define Stack_new(elem_type, memory, capacity) {sizeof(elem_type), (char*)(memory), (capacity), 0U}
 
 /**
- * Initialize the stack.
+ * Initializes the stack.
+ *
  * @see Test_Stack_init
  * @param stack The pointer to the stack.
  * @param elem_size The size of an element.
@@ -42,7 +44,8 @@ struct Stack {
 extern void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory, unsigned int capacity);
 
 /**
- * Judge if the stack is empty or not.
+ * Judges whether the stack is empty.
+ *
  * @see Test_Stack_is_empty
  * @param stack The pointer to the stack.
  * @return Return true if the stack is empty, otherwise return false.
@@ -50,7 +53,8 @@ extern void Stack_init(struct Stack* stack, unsigned int elem_size, void* memory
 extern enum Boolean Stack_is_empty(struct Stack* stack);
 
 /**
- * Judge if the stack is full or not.
+ * Judges whether the stack is full.
+ *
  * @see Test_Stack_is_full
  * @param stack The pointer to the stack.
  * @return Return true if the stack is full, otherwise return false.
@@ -58,7 +62,8 @@ extern enum Boolean Stack_is_empty(struct Stack* stack);
 extern enum Boolean Stack_is_full(struct Stack* stack);
 
 /**
- * Get the number of elements on the stack.
+ * Gets the number of elements on the stack.
+ *
  * @see Test_Stack_size
  * @param stack The pointer to the stack.
  * @return Return the number of elements on the stack.
@@ -66,7 +71,8 @@ extern enum Boolean Stack_is_full(struct Stack* stack);
 extern unsigned int Stack_size(struct Stack* stack);
 
 /**
- * Push an element to the stack.
+ * Pushes an element to the stack.
+ *
  * @see Test_Stack_push
  * @param stack The pointer to the stack.
  * @param elem An element that is pushed to the stack(You must not set NULL to this argument).
@@ -75,7 +81,8 @@ extern unsigned int Stack_size(struct Stack* stack);
 extern enum StackStatus Stack_push(struct Stack* stack, const void* elem);
 
 /**
- * Pop an element from the stack.
+ * Pops an element from the stack.
+ *
  * @see Test_Stack_pop
  * @param stack The pointer to the stack.
  * @param elem An element that is popped from the stack(You can set NULL to this argument. In that case, the popped value is discarded).
@@ -84,14 +91,15 @@ extern enum StackStatus Stack_push(struct Stack* stack, const void* elem);
 extern enum StackStatus Stack_pop(struct Stack* stack, void* elem);
 
 /**
- * Copy a stack.
+ * Copies a stack.
  * This function makes a deep copy of the stack memory area.
  * The element size of the destination stack must be as large as the element size of the source stack.
  * If the size of the memory area is different, it will be copied to fit the smaller memory area.
+ *
  * @see Test_Stack_copy
  * @param dst A destination stack
  * @param src A source stack
  */
 extern void Stack_copy(struct Stack* dst, const struct Stack* src);
 
-#endif /* STACK_H */
+#endif

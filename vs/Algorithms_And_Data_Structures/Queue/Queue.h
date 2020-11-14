@@ -23,7 +23,8 @@ struct Queue {
 };
 
 /**
- * Create a queue.
+ * Creates a queue.
+ *
  * @see Test_Queue_new
  * @param elem_type The type of the element.
  * @param memory The memory area of the queue.
@@ -33,7 +34,8 @@ struct Queue {
 #define Queue_new(elem_type, memory, capacity) {sizeof(elem_type), (char*)(memory), (capacity), 0U, 0U}
 
  /**
-  * Initialize the queue.
+  * Initializes the queue.
+ *
   * @see Test_Queue_init
   * @param queue The pointer to the queue.
   * @param elem_size The size of an element.
@@ -43,7 +45,8 @@ struct Queue {
 extern void Queue_init(struct Queue* queue, unsigned int elem_size, void* memory, unsigned int capacity);
 
 /**
- * Judge if the queue is empty or not.
+ * Judges whether the queue is empty.
+ *
  * @see Test_Queue_is_empty
  * @param queue The pointer to the queue.
  * @return Return true if the queue is empty, otherwise return false.
@@ -51,7 +54,8 @@ extern void Queue_init(struct Queue* queue, unsigned int elem_size, void* memory
 extern enum Boolean Queue_is_empty(struct Queue* queue);
 
 /**
- * Judge if the queue is full or not.
+ * Judges whether the queue is full.
+ *
  * @see Test_Queue_is_full
  * @param queue The pointer to the queue.
  * @return Return true if the queue is full, otherwise return false.
@@ -59,7 +63,8 @@ extern enum Boolean Queue_is_empty(struct Queue* queue);
 extern enum Boolean Queue_is_full(struct Queue* queue);
 
 /**
- * Get the number of elements on the queue.
+ * Gets the number of elements on the queue.
+ *
  * @see Test_Queue_size
  * @param queue The pointer to the queue.
  * @return Return the number of elements on the queue.
@@ -67,7 +72,8 @@ extern enum Boolean Queue_is_full(struct Queue* queue);
 extern unsigned int Queue_size(struct Queue* queue);
 
 /**
- * Enqueue an element to the queue.
+ * Enqueues an element to the queue.
+ *
  * @see Test_Queue_enqueue_dequeue
  * @param queue The pointer to the queue.
  * @param elem An element that is enqueued to the queue(You must not set NULL to this argument).
@@ -76,7 +82,8 @@ extern unsigned int Queue_size(struct Queue* queue);
 extern enum QueueStatus Queue_enqueue(struct Queue* queue, const void* elem);
 
 /**
- * Dequeue an element from the queue.
+ * Dequeues an element from the queue.
+ *
  * @see Test_Queue_enqueue
  * @see Test_Queue_enqueue_dequeue
  * @param queue The pointer to the queue.
@@ -85,4 +92,4 @@ extern enum QueueStatus Queue_enqueue(struct Queue* queue, const void* elem);
  */
 extern enum QueueStatus Queue_dequeue(struct Queue* queue, void* elem);
 
-#endif /* QUEUE_H */
+#endif

@@ -10,11 +10,12 @@ enum Boolean {
 };
 
 /**
- * Get the minimum value.
+ * Gets the minimum value.
+ *
  * @param x A value.
  * @param y Another value.
  * @return Return the smaller of x and y. If x equals y, return y.
  */
 #define min(x, y) ((x) < (y) ? (x) : (y))
 
-#endif /* COMMON_H */
+#endif
