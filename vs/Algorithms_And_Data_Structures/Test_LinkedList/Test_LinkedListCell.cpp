@@ -51,9 +51,9 @@ namespace TestLinkedCell
 			value_t value = 1;
 			LinkedListCell* cell = LinkedListCell_create(&next_cell, &value, sizeof(value_t));
 
-			Boolean has_next = LinkedListCell_has_next(cell);
+			Boolean it_has_next = LinkedListCell_has_next(cell);
 
-			Assert::AreEqual<int>(TRUE, has_next);
+			Assert::AreEqual<int>(TRUE, it_has_next);
 
 			LinkedListCell_destroy(cell);
 		}
@@ -63,9 +63,9 @@ namespace TestLinkedCell
 			value_t value = 1;
 			LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
 
-			Boolean has_next = LinkedListCell_has_next(cell);
+			Boolean it_has_next = LinkedListCell_has_next(cell);
 
-			Assert::AreEqual<int>(FALSE, has_next);
+			Assert::AreEqual<int>(FALSE, it_has_next);
 
 			LinkedListCell_destroy(cell);
 		}
@@ -147,7 +147,7 @@ namespace TestLinkedCell
 			struct LinkedListCell* cell = LinkedListCell_create(NULL, &value, sizeof(value_t));
 
 			value_t value_to_set = 2;
-			LinkedListCell_get(cell, &value_to_set);
+			LinkedListCell_set(cell, &value_to_set);
 
 			Assert::AreEqual(value_to_set, *(value_t*)cell->value);
 
